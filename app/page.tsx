@@ -50,12 +50,16 @@ export default function Home() {
           Home
         </button>
 
-        <button className="pl-40 text-xl font-krona-one text-blues">
+        <button className="pl-20 text-xl font-krona-one text-blues">
           Register HAKI
         </button>
 
-        <button className="pl-40 text-xl font-krona-one text-blues">
+        <button className="pl-20 text-xl font-krona-one text-blues">
           See HAKI
+        </button>
+
+        <button className="pl-20 text-xl font-krona-one text-blues">
+          Your HAKI
         </button>
 
       </nav>

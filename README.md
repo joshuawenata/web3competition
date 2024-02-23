@@ -12,15 +12,32 @@
 
 Follwing are the steps to deploy your application locally
 
-1. Install dependencies:
+1. Install wsl:
+
+    `wsl --install`
+
+3. Install dfx:
+
+   `DFX_VERSION=0.14.1 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"`
+
+4. Add dfx to your path
+
+   `echo 'export PATH="$PATH:$HOME/bin"' >> "$HOME/.bashrc"`
+
+5. Install dependencies:
 
     `yarn && cd azle/ && yarn && cd ..`
 
-2. Run below commands:
+6. Run below commands:
 
    ```dfx start --clean --background```
 
    `bash scripts/deploy_frontend_canister.sh  local`
+
+7. Install nvm
+
+   ```curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash```
+   `nvm use 18`
 
 - To Stop Replica run:
 

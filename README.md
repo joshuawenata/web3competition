@@ -18,7 +18,7 @@ Follwing are the steps to deploy your application locally
 
 2. Install dfx:
 
-   `DFX_VERSION=0.14.1 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"`
+   `DFX_VERSION=0.15.0 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"`
 
 3. Add dfx to your path
 

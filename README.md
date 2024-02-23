@@ -16,13 +16,18 @@ Follwing are the steps to deploy your application locally
 
     `wsl --install`
 
-3. Install dfx:
+2. Install dfx:
 
    `DFX_VERSION=0.14.1 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"`
 
-4. Add dfx to your path
+3. Add dfx to your path
 
    `echo 'export PATH="$PATH:$HOME/bin"' >> "$HOME/.bashrc"`
+
+4. Install nvm
+
+   ```curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash```
+   `nvm use 18`
 
 5. Install dependencies:
 

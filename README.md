@@ -27,19 +27,20 @@ Follwing are the steps to deploy your application locally
 4. Install nvm
 
    ```curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash```
+   <br>
    `nvm use 18`
 
-5. Install dependencies:
+6. Install dependencies:
 
     `yarn && cd azle/ && yarn && cd ..`
 
-6. Run below commands:
+7. Run below commands:
 
    ```dfx start --clean --background```
 
    `bash scripts/deploy_frontend_canister.sh  local`
 
-7. Install nvm
+8. Install nvm
 
    ```curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash```
    `nvm use 18`

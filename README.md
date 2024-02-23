@@ -30,20 +30,15 @@ Follwing are the steps to deploy your application locally
    <br>
    `nvm use 18`
 
-6. Install dependencies:
+5. Install dependencies:
 
     `yarn && cd azle/ && yarn && cd ..`
 
-7. Run below commands:
+6. Run below commands:
 
    ```dfx start --clean --background```
 
    `bash scripts/deploy_frontend_canister.sh  local`
-
-8. Install nvm
-
-   ```curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash```
-   `nvm use 18`
 
 - To Stop Replica run:
 

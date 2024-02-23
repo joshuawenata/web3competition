@@ -1,27 +1,6 @@
 "use client";
-import { useState } from "react";
-import { makeAzleActor } from "../service/actor";
 
 export default function Home() {
-  const [message, setMessage] = useState<string>("");
-  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
-  const [desiredStateReached, setDesiredStateReached] = useState(false);
-
-  const handleSubmit = async () => {
-    try {
-      const azle = await makeAzleActor();
-
-      setIsButtonDisabled(true);
-      const getRandomByte = await azle.randomBytes();
-      console.log("getRandomByte ", getRandomByte);
-
-      setMessage(getRandomByte);
-      setIsButtonDisabled(false);
-    } catch (error) {
-      console.log(JSON.stringify(error));
-    }
-    setIsButtonDisabled(false);
-  };
   return (
     <main className="bg-background h-screen w-screen">
       {/* font krona one */}

@@ -16,9 +16,11 @@ const Navbar = () => {
             </svg>
             </div>
             
+            <Link href="/">
             <button className="pl-80 text-xl font-krona-one text-blues">
             Home
             </button>
+            </Link>
             
             <button className="pl-20 text-xl font-krona-one text-blues">
             Register HAKI

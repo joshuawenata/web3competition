@@ -1,7 +1,7 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 
-const Navbar = () => {
+const NavbarLoggedin = () => {
     const router = useRouter();
     
     const handleLogoClick = () => {
@@ -43,4 +43,4 @@ const Navbar = () => {
     )
 }
 
-export default Navbar;
+export default NavbarLoggedin;

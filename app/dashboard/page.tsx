@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import Navbar from "../components/navbar";
 
 export default function Home() {
@@ -33,6 +34,7 @@ export default function Home() {
         <div>
 
           <div className="flex justify-center mt-20">
+            <button onClick={handleRegisterAccount} className="text-xl font-krona-one bg-bluesk w-80 h-16 rounded-xl">
             <button onClick={handleRegisterAccount} className="text-xl font-krona-one bg-bluesk w-80 h-16 rounded-xl">
               REGISTER
             </button>

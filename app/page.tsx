@@ -1,6 +1,14 @@
 "use client";
 
+import { useRouter } from "next/navigation";
+
 export default function Home() {
+  const router = useRouter();
+
+  const handleGetStarted = () => {
+    router.push('/dashboard')
+  }
+
   return (
     <main className="bg-background h-screen w-screen">
       {/* font krona one */}
@@ -85,7 +93,7 @@ export default function Home() {
           </div>
 
           <div className="flex justify-center mt-10">
-            <button className="text-xl font-krona-one bg-bluesk pl-10 pr-10 pt-5 pb-5 rounded-xl">
+            <button onClick={handleGetStarted} className="text-xl font-krona-one bg-bluesk pl-10 pr-10 pt-5 pb-5 rounded-xl">
               GET STARTED
             </button>
           </div>

@@ -10,8 +10,8 @@ module.exports = {
       colors: {
         'background': '#E1F1FD',
         'blues': '#170072',
-        'bluesa': '#4663AC',
-        'bluesk': '#9BB1D0',
+        'bluesa': '#9BB1D0',
+        'bluesk': '#4663AC',
         'bluesi': '#FFFFFF',
       },
       fontFamily: {

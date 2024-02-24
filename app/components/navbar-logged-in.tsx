@@ -22,6 +22,22 @@ const Navbar = () => {
                 </svg>
             </button>
             
+            <button className="pl-80 text-xl font-krona-one text-blues">
+            Home
+            </button>
+            
+            <button className="pl-20 text-xl font-krona-one text-blues">
+            Register HAKI
+            </button>
+            
+            <button className="pl-20 text-xl font-krona-one text-blues">
+            See HAKI
+            </button>
+            
+            <button className="pl-20 text-xl font-krona-one text-blues">
+            Your HAKI
+            </button>
+            
             </nav>
         </div>
     )

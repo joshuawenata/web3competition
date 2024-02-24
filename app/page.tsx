@@ -1,9 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import Navbar from "./components/navbar";
 import { useRouter } from "next/navigation";
-
 
 export default function Home() {
   const router = useRouter();
@@ -69,11 +67,8 @@ export default function Home() {
 
           <div className="flex justify-center mt-10">
             <button onClick={handleGetStarted} className="text-xl font-krona-one bg-bluesk pl-10 pr-10 pt-5 pb-5 rounded-xl">
-            <Link href={{pathname: "/pages/register.tsx"}}>
-            <button className="text-xl font-krona-one bg-bluesk pl-10 pr-10 pt-5 pb-5 rounded-xl">
               GET STARTED
             </button>
-            </Link>
           </div>
 
         </div>

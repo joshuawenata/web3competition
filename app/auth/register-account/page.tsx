@@ -1,16 +1,8 @@
-"use client";
-
-import { useRouter } from "next/navigation";
-import Navbar from "../components/navbar";
+import Navbar from "../../components/navbar";
+import Link from 'next/link';
 
 export default function Home() {
-  const router = useRouter();
-
-  const handleRegisterAccount = () => {
-    router.push('/auth/register-account')
-  }
-  
-  return (
+    return (
     <main className="bg-background h-screen w-screen">
       {/* font krona one */}
       <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -25,25 +17,63 @@ export default function Home() {
       <Navbar/>
 
       <div className="flex flex-row place-content-center">
-
         <div>
+          <div className="flex justify-center">
+            <form>
+              <div className="flex justify-center mt-3">
+                <input 
+                  className="text-xl text-gray-700 font-krona-one pl-5 bg-white w-full h-16 rounded-xl"
+                  type="text" 
+                  id="username"
+                  placeholder="Nama Lengkap"
+                  name="nama" />
+              
+              </div>
+              <div className="flex justify-center mt-3">
+                <input 
+                  className="text-xl text-gray-700 font-krona-one pl-5 bg-white w-full h-16 rounded-xl"
+                  type="text" 
+                  id="username"
+                  placeholder="NIK"
+                  name="nik" />
+              
+              </div>
+              <div className="flex justify-center mt-3">
+                <input 
+                  className="text-xl text-gray-700 font-krona-one pl-5 bg-white w-full h-16 rounded-xl"
+                  type="text" 
+                  id="email"
+                  placeholder="Email"
+                  name="email" />
+              
+              </div>
+              <div className="flex justify-center mt-3">
+                <input 
+                  className="text-xl text-gray-700 font-krona-one pl-5 bg-white w-full h-16 rounded-xl"
+                  type="password" 
+                  id="password"
+                  placeholder="Password"
+                  name="password" />
+              
+              </div>
+              <div className="flex justify-center mt-3">
+                <input 
+                  className="text-xl text-gray-700 font-krona-one pl-5 bg-white w-full h-16 rounded-xl"
+                  type="password" 
+                  id="password"
+                  placeholder="Confirmation Password"
+                  name="confirmpass" />
+              
+              </div>
+            </form>
+          </div>
 
-          <div className="flex justify-center mt-20">
-            <button onClick={handleRegisterAccount} className="text-xl font-krona-one bg-bluesk w-80 h-16 rounded-xl">
+          
+
+          <div className="flex justify-center mt-10">
+            <button className="text-xl font-krona-one bg-bluesk pl-10 pr-10 pt-5 pb-5 rounded-xl w-80">
               REGISTER
             </button>
-          </div>
-
-          <div className="flex justify-center mt-5">
-            <button className="text-xl font-krona-one bg-bluesk w-80 h-16 rounded-xl">
-              LOGIN
-            </button>
-          </div>
-
-          <div className="flex justify-center mt-5">
-            <a className="text-xl font-krona-one text-bluesk">
-              LOGIN AS ADMIN?
-            </a>
           </div>
 
         </div>
@@ -118,5 +148,5 @@ export default function Home() {
 
       </div>
     </main>
-  );
+    )
 }

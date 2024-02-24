@@ -1,8 +1,17 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import Navbar from "../components/navbar";
+import NavbarLoggedin from "../components/navbar-logged-in";
 
 export default function Home() {
+
+  const router = useRouter();
+
+  const handleFinishPay = () => {
+    router.push('/your-haki')
+  }
+
   return (
     <main className="bg-background h-screen w-screen">
       {/* font krona one */}
@@ -15,7 +24,7 @@ export default function Home() {
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin=""/>
       <link href="https://fonts.googleapis.com/css2?family=Krona+One&family=Luckiest+Guy&display=swap" rel="stylesheet"/>
       
-      <Navbar/>
+      <NavbarLoggedin />
 
       <div className="flex flex-row place-content-center">
 
@@ -54,7 +63,9 @@ export default function Home() {
           </div>
 
           <div className="flex justify-center mt-5">
-            <button className="text-xl font-krona-one bg-bluesk w-80 h-16 rounded-xl">
+            <button 
+              onClick={handleFinishPay}
+              className="text-xl font-krona-one bg-bluesk w-80 h-16 rounded-xl">
               FINISH PAY
             </button>
           </div>

@@ -7,10 +7,9 @@ export default function Home() {
   const router = useRouter();
 
   const handleSubmit = () => {
-    router.push('your-haki')
+    router.push('/payment')
   }
-
-
+  
   return (
     <main className="bg-background h-screen w-screen">
       {/* font krona one */}

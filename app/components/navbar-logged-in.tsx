@@ -16,6 +16,9 @@ const NavbarLoggedin = () => {
         router.push('/your-haki')
     }
 
+    const handleHome = () => {
+        router.push('/')
+    }
 
     return (
         <div>
@@ -31,7 +34,7 @@ const NavbarLoggedin = () => {
                 </svg>
             </button>
             
-            <button className="pl-80 text-xl font-krona-one text-blues">
+            <button onClick={handleHome} className="pl-80 text-xl font-krona-one text-blues">
             Home
             </button>
             

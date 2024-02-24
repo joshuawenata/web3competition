@@ -9,6 +9,7 @@ export default function Home() {
     const handleSubmit = () => {
         router.push('/')
     }
+    
     return (
     <main className="bg-background h-screen w-screen">
       {/* font krona one */}
@@ -49,8 +50,6 @@ export default function Home() {
             </form>
 
           </div>
-
-          
 
           <div className="flex justify-center mt-10">
             <button onClick={handleSubmit} className="text-xl font-krona-one bg-bluesk pl-10 pr-10 pt-5 pb-5 rounded-xl w-80">

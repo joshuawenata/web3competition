@@ -2,7 +2,6 @@
 import { useRouter } from "next/navigation";
 import Navbar from "../../components/navbar";
 
-
 export default function Home() {
     const router = useRouter();
 
@@ -26,26 +25,28 @@ export default function Home() {
       <div className="flex flex-row place-content-center">
         <div>
           <div className="flex justify-center mt-20">
-            <form>
-              <div className="flex justify-center mt-3">
-                <input 
-                  className="text-xl text-gray-700 font-krona-one pl-5 bg-white w-full h-16 rounded-xl"
-                  type="text" 
-                  id="username"
-                  placeholder="Email"
-                  name="email" />
-              
-              </div>
-              <div className="flex justify-center mt-3">
-                <input 
-                  className="text-xl text-gray-700 font-krona-one pl-5 bg-white w-full h-16 rounded-xl"
-                  type="password" 
-                  id="username"
-                  placeholder="Password"
-                  name="password" />
-              
-              </div>
+            <form> 
+                <div className="relative w-full mt-3">
+                    <input 
+                      type="text" 
+                      id="email" 
+                      className="bg-gray-50 border font-krona-one text-base h-16 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-5 p-2.5  dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+                      placeholder="Email"
+                      style={{ width: "32rem" }} 
+                      required />
+                </div>
+                <div className="relative w-full mt-3">
+                    <input 
+                      type="password" 
+                      id="password" 
+                      className="bg-gray-50 border font-krona-one text-base h-16 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-5 p-2.5  dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+                      placeholder="Password"
+                      style={{ width: "32rem" }} 
+                      required />
+                </div>
+                
             </form>
+
           </div>
 
           

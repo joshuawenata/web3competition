@@ -1,9 +1,16 @@
 "use client";
 import { useRouter } from "next/navigation";
 import Navbar from "../components/navbar";
+import NavbarLoggedin from "../components/navbar-logged-in";
 
 export default function Home() {
   const router = useRouter();
+
+  const handleSubmit = () => {
+    router.push('your-haki')
+  }
+
+
   return (
     <main className="bg-background h-screen w-screen">
       {/* font krona one */}
@@ -16,7 +23,7 @@ export default function Home() {
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin=""/>
       <link href="https://fonts.googleapis.com/css2?family=Krona+One&family=Luckiest+Guy&display=swap" rel="stylesheet"/>
       
-      <Navbar/>
+      <NavbarLoggedin />
 
       <div className="flex flex-row place-content-center">
 
@@ -117,6 +124,7 @@ export default function Home() {
 
           <div className="flex justify-center mt-10">
             <button 
+              onClick={handleSubmit}
               className="text-xl font-krona-one bg-bluesk pl-10 pr-10 pt-5 pb-5 rounded-xl"
               style={{ width: "36rem" }} >
               SUBMIT

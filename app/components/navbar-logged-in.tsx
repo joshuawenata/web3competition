@@ -8,6 +8,15 @@ const NavbarLoggedin = () => {
         router.push('/')
     }
 
+    const handleRegisterHaki = () => {
+        router.push('/register-haki')
+    }
+
+    const handleYourHaki = () => {
+        router.push('/your-haki')
+    }
+
+
     return (
         <div>
             <nav className="flex items-center">
@@ -26,15 +35,12 @@ const NavbarLoggedin = () => {
             Home
             </button>
             
-            <button className="pl-20 text-xl font-krona-one text-blues">
+            <button onClick={handleRegisterHaki} className="pl-20 text-xl font-krona-one text-blues">
             Register HAKI
             </button>
             
-            <button className="pl-20 text-xl font-krona-one text-blues">
-            See HAKI
-            </button>
             
-            <button className="pl-20 text-xl font-krona-one text-blues">
+            <button onClick={handleYourHaki} className="pl-20 text-xl font-krona-one text-blues">
             Your HAKI
             </button>
             

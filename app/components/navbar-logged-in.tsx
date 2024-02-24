@@ -1,10 +1,22 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 
-const Navbar = () => {
+const NavbarLoggedin = () => {
     const router = useRouter();
     
     const handleLogoClick = () => {
+        router.push('/')
+    }
+
+    const handleRegisterHaki = () => {
+        router.push('/register-haki')
+    }
+
+    const handleYourHaki = () => {
+        router.push('/your-haki')
+    }
+
+    const handleHome = () => {
         router.push('/')
     }
 
@@ -22,19 +34,16 @@ const Navbar = () => {
                 </svg>
             </button>
             
-            <button className="pl-80 text-xl font-krona-one text-blues">
+            <button onClick={handleHome} className="pl-80 text-xl font-krona-one text-blues">
             Home
             </button>
             
-            <button className="pl-20 text-xl font-krona-one text-blues">
+            <button onClick={handleRegisterHaki} className="pl-20 text-xl font-krona-one text-blues">
             Register HAKI
             </button>
             
-            <button className="pl-20 text-xl font-krona-one text-blues">
-            See HAKI
-            </button>
             
-            <button className="pl-20 text-xl font-krona-one text-blues">
+            <button onClick={handleYourHaki} className="pl-20 text-xl font-krona-one text-blues">
             Your HAKI
             </button>
             
@@ -43,4 +52,4 @@ const Navbar = () => {
     )
 }
 
-export default Navbar;
+export default NavbarLoggedin;

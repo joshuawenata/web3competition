@@ -7,7 +7,7 @@ export default function Home() {
     const router = useRouter();
 
     const handleSubmit = () => {
-        router.push('/')
+        router.push('/your-haki')
     }
     
     return (

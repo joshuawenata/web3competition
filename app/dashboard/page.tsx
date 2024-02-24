@@ -3,7 +3,6 @@ import { useRouter } from "next/navigation";
 import Navbar from "../components/navbar";
 
 export default function Home() {
-
   const router = useRouter();
 
   const handleRegisterAccount = () => {
@@ -13,7 +12,7 @@ export default function Home() {
   const handleLogin = () => {
     router.push('/auth/login')
   }
-  
+
   return (
     <main className="bg-background h-screen w-screen">
       {/* font krona one */}

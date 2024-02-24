@@ -25,52 +25,53 @@ export default function Home() {
       <div className="flex flex-row place-content-center">
         <div>
           <div className="flex justify-center">
-            <form>
-              <div className="flex justify-center mt-3">
-                <input 
-                  className="text-xl text-gray-700 font-krona-one pl-5 bg-white w-full h-16 rounded-xl"
-                  type="text" 
-                  id="username"
-                  placeholder="Nama Lengkap"
-                  name="nama" />
-              
-              </div>
-              <div className="flex justify-center mt-3">
-                <input 
-                  className="text-xl text-gray-700 font-krona-one pl-5 bg-white w-full h-16 rounded-xl"
-                  type="text" 
-                  id="username"
-                  placeholder="NIK"
-                  name="nik" />
-              
-              </div>
-              <div className="flex justify-center mt-3">
-                <input 
-                  className="text-xl text-gray-700 font-krona-one pl-5 bg-white w-full h-16 rounded-xl"
-                  type="text" 
-                  id="email"
-                  placeholder="Email"
-                  name="email" />
-              
-              </div>
-              <div className="flex justify-center mt-3">
-                <input 
-                  className="text-xl text-gray-700 font-krona-one pl-5 bg-white w-full h-16 rounded-xl"
-                  type="password" 
-                  id="password"
-                  placeholder="Password"
-                  name="password" />
-              
-              </div>
-              <div className="flex justify-center mt-3">
-                <input 
-                  className="text-xl text-gray-700 font-krona-one pl-5 bg-white w-full h-16 rounded-xl"
-                  type="password" 
-                  id="password"
-                  placeholder="Confirmation Password"
-                  name="confirmpass" />
-              
-              </div>
+          <form> 
+                <div className="relative w-full mt-3">
+                    <input 
+                      type="text" 
+                      id="email" 
+                      className="bg-gray-50 border font-krona-one text-base h-16 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-5 p-2.5  dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+                      placeholder="Nama Lengkap"
+                      style={{ width: "32rem" }} 
+                      required />
+                </div>
+                <div className="relative w-full mt-3">
+                    <input 
+                      type="text" 
+                      id="nik" 
+                      className="bg-gray-50 border font-krona-one text-base h-16 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-5 p-2.5  dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+                      placeholder="NIK"
+                      style={{ width: "32rem" }} 
+                      required />
+                </div>
+                <div className="relative w-full mt-3">
+                    <input 
+                      type="email" 
+                      id="email" 
+                      className="bg-gray-50 border font-krona-one text-base h-16 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-5 p-2.5  dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+                      placeholder="Email"
+                      style={{ width: "32rem" }} 
+                      required />
+                </div>
+                <div className="relative w-full mt-3">
+                    <input 
+                      type="password" 
+                      id="password" 
+                      className="bg-gray-50 border font-krona-one text-base h-16 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-5 p-2.5  dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+                      placeholder="Password"
+                      style={{ width: "32rem" }} 
+                      required />
+                </div>
+                <div className="relative w-full mt-3">
+                    <input 
+                      type="password"
+                      id="password"
+                      className="bg-gray-50 border font-krona-one text-base h-16 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-5 p-2.5  dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+                      placeholder="Confirmation Password"
+                      style={{ width: "32rem" }} 
+                      required />
+                </div>
+                
             </form>
           </div>
 

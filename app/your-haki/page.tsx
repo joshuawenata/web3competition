@@ -1,9 +1,16 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import Navbar from "../components/navbar";
 import NavbarLoggedin from "../components/navbar-logged-in";
 
 export default function Home() {
+    const router = useRouter();
+
+    const handleDetail = () => {
+      router.push('/detail/with-reason')
+    }  
+
     return(
         <main className="bg-background h-screen w-screen">
       {/* font krona one */}
@@ -25,7 +32,7 @@ export default function Home() {
                 </button>
             </div>
             <div className="text-4xl font-krona-one pl-10 pr-10 pt-3 pb-3 text-blue-800	">
-                Pencarian Haki
+                Your HAKI
             </div>
             
         </div>
@@ -56,7 +63,7 @@ export default function Home() {
                        <td className="border border-blue-600">JUDUL Ciptaan #2</td>
                        <td className="border border-blue-600">Deskripsi</td>
                        <td className="border border-blue-600"><a href="#">Tampilkan</a></td>
-                       <td className="border border-blue-600 text-red-600">Rejected</td>
+                       <td className="border border-blue-600 text-red-600"><button onClick={handleDetail}>Rejected</button></td>
                     </tr>
                     <tr className="bg-indigo-200 text-black">
                         <td className="border border-blue-600 px-1 py-1">3</td>

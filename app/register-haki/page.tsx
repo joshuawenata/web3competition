@@ -9,7 +9,7 @@ export default function Home() {
   const handleSubmit = () => {
     router.push('/payment')
   }
-
+  
   return (
     <main className="bg-background h-screen w-screen">
       {/* font krona one */}

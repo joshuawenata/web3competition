@@ -4,7 +4,6 @@ import Navbar from "../components/navbar";
 
 export default function Home() {
   const router = useRouter();
-
   return (
     <main className="bg-background h-screen w-screen">
       {/* font krona one */}

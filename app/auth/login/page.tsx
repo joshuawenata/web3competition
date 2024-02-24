@@ -7,7 +7,7 @@ export default function Home() {
     const router = useRouter();
 
     const handleSubmit = () => {
-        router.push('/register-haki')
+        router.push('/your-haki')
     }
     return (
     <main className="bg-background h-screen w-screen">

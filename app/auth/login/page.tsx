@@ -3,11 +3,11 @@ import { useRouter } from "next/navigation";
 import Navbar from "../../components/navbar";
 
 export default function Home() {
-  const router = useRouter();
+    const router = useRouter();
 
-  const handleSubmit = () => {
-    router.push('/auth/login')
-  }
+    const handleSubmit = () => {
+        router.push('/')
+    }
     return (
     <main className="bg-background h-screen w-screen">
       {/* font krona one */}
@@ -24,31 +24,13 @@ export default function Home() {
 
       <div className="flex flex-row place-content-center">
         <div>
-          <div className="flex justify-center">
+          <div className="flex justify-center mt-20">
             <form>
               <div className="flex justify-center mt-3">
                 <input 
                   className="text-xl text-gray-700 font-krona-one pl-5 bg-white w-full h-16 rounded-xl"
                   type="text" 
                   id="username"
-                  placeholder="Nama Lengkap"
-                  name="nama" />
-              
-              </div>
-              <div className="flex justify-center mt-3">
-                <input 
-                  className="text-xl text-gray-700 font-krona-one pl-5 bg-white w-full h-16 rounded-xl"
-                  type="text" 
-                  id="username"
-                  placeholder="NIK"
-                  name="nik" />
-              
-              </div>
-              <div className="flex justify-center mt-3">
-                <input 
-                  className="text-xl text-gray-700 font-krona-one pl-5 bg-white w-full h-16 rounded-xl"
-                  type="text" 
-                  id="email"
                   placeholder="Email"
                   name="email" />
               
@@ -57,18 +39,9 @@ export default function Home() {
                 <input 
                   className="text-xl text-gray-700 font-krona-one pl-5 bg-white w-full h-16 rounded-xl"
                   type="password" 
-                  id="password"
+                  id="username"
                   placeholder="Password"
                   name="password" />
-              
-              </div>
-              <div className="flex justify-center mt-3">
-                <input 
-                  className="text-xl text-gray-700 font-krona-one pl-5 bg-white w-full h-16 rounded-xl"
-                  type="password" 
-                  id="password"
-                  placeholder="Confirmation Password"
-                  name="confirmpass" />
               
               </div>
             </form>
@@ -78,7 +51,7 @@ export default function Home() {
 
           <div className="flex justify-center mt-10">
             <button onClick={handleSubmit} className="text-xl font-krona-one bg-bluesk pl-10 pr-10 pt-5 pb-5 rounded-xl w-80">
-              REGISTER
+              LOGIN
             </button>
           </div>
 

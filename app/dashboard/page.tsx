@@ -1,5 +1,4 @@
 "use client";
-
 import { useRouter } from "next/navigation";
 import Navbar from "../components/navbar";
 
@@ -9,6 +8,10 @@ export default function Home() {
 
   const handleRegisterAccount = () => {
     router.push('/auth/register-account')
+  }
+
+  const handleLogin = () => {
+    router.push('/auth/login')
   }
   
   return (
@@ -36,7 +39,7 @@ export default function Home() {
           </div>
 
           <div className="flex justify-center mt-5">
-            <button className="text-xl font-krona-one bg-bluesk w-80 h-16 rounded-xl">
+            <button onClick={handleLogin} className="text-xl font-krona-one bg-bluesk w-80 h-16 rounded-xl">
               LOGIN
             </button>
           </div>

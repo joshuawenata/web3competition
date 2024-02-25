@@ -38,7 +38,7 @@ export default function Home() {
                 </button>
             </div>
             <div className="text-4xl font-krona-one pl-10 pr-10 pt-3 pb-3 text-darkblue	">
-                Your HAKI
+                Discover HAKI
             </div>
             
         </div>
@@ -51,7 +51,6 @@ export default function Home() {
                     <th className="border border-blue-600 pl-2 bg-darkblue">Judul</th>
                     <th className="border border-blue-600 pl-2 bg-darkblue">Deskripsi</th>
                     <th className="border border-blue-600 pl-2 bg-darkblue">Barcode</th>
-                    <th className="border border-blue-600 pl-2 bg-darkblue">Status</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -61,7 +60,6 @@ export default function Home() {
                        <td className="border border-blue-600 pl-2">JUDUL Ciptaan #1</td>
                        <td className="border border-blue-600 pl-2">Deskripsi</td>
                        <td className="border border-blue-600 pl-2 text-lgtblue"><a href="#">Tampilkan</a></td>
-                       <td className="border border-blue-600 pl-2 text-greenapr"><button onClick={handleDetailApproved}>Approved</button></td>
                     </tr>
                     <tr className="bg-darkbluebg text-black">
                         <td className="border border-blue-600 pl-2 px-1 py-1">2</td>
@@ -69,7 +67,6 @@ export default function Home() {
                        <td className="border border-blue-600 pl-2">JUDUL Ciptaan #2</td>
                        <td className="border border-blue-600 pl-2">Deskripsi</td>
                        <td className="border border-blue-600 pl-2 text-lgtblue"><a href="#">Tampilkan</a></td>
-                       <td className="border border-blue-600 pl-2 text-red-600"><button onClick={handleDetailRejected}>Rejected</button></td>
                     </tr>
                     <tr className="bg-lgtbluebg text-black">
                         <td className="border border-blue-600 pl-2 px-1 py-1">3</td>
@@ -77,7 +74,6 @@ export default function Home() {
                        <td className="border border-blue-600 pl-2">JUDUL Ciptaan #3</td>
                        <td className="border border-blue-600 pl-2">Deskripsi</td>
                        <td className="border border-blue-600 pl-2 text-lgtblue"><a href="#">Tampilkan</a></td>
-                       <td className="border border-blue-600 pl-2 text-greenapr">Approved</td>
                     </tr>
                     <tr className="bg-darkbluebg text-black">
                         <td className="border border-blue-600 pl-2 px-1 py-1">4</td>
@@ -85,7 +81,6 @@ export default function Home() {
                        <td className="border border-blue-600 pl-2">JUDUL Ciptaan #4</td>
                        <td className="border border-blue-600 pl-2">Deskripsi</td>
                        <td className="border border-blue-600 pl-2 text-lgtblue"><a href="#">Tampilkan</a></td>
-                       <td className="border border-blue-600 pl-2 text-greenapr">Approved</td>
                     </tr>
                     <tr className="bg-lgtbluebg text-black">
                         <td className="border border-blue-600 pl-2 px-1 py-1">5</td>
@@ -93,7 +88,6 @@ export default function Home() {
                        <td className="border border-blue-600 pl-2">JUDUL Ciptaan #5</td>
                        <td className="border border-blue-600 pl-2">Deskripsi</td>
                        <td className="border border-blue-600 pl-2 text-lgtblue"><a href="#">Tampilkan</a></td>
-                       <td className="border border-blue-600 pl-2 text-greenapr">Approved</td>
                     </tr>
                     <tr className="bg-darkbluebg text-black">
                         <td className="border border-blue-600 pl-2 px-1 py-1">6</td>
@@ -101,7 +95,6 @@ export default function Home() {
                        <td className="border border-blue-600 pl-2">JUDUL Ciptaan #6</td>
                        <td className="border border-blue-600 pl-2">Deskripsi</td>
                        <td className="border border-blue-600 pl-2 text-lgtblue"><a href="#">Tampilkan</a></td>
-                       <td className="border border-blue-600 pl-2 text-red-600">Rejected</td>
                     </tr>
                     <tr className="bg-lgtbluebg text-black">
                         <td className="border border-blue-600 pl-2 px-1 py-1">7</td>
@@ -109,7 +102,6 @@ export default function Home() {
                        <td className="border border-blue-600 pl-2">JUDUL Ciptaan #7</td>
                        <td className="border border-blue-600 pl-2">Deskripsi</td>
                        <td className="border border-blue-600 pl-2 text-lgtblue"><a href="#">Tampilkan</a></td>
-                       <td className="border border-blue-600 pl-2 text-red-600">Rejected</td>
                     </tr>
                     <tr className="bg-darkbluebg text-black">
                         <td className="border border-blue-600 pl-2 px-1 py-1">8</td>
@@ -117,7 +109,6 @@ export default function Home() {
                        <td className="border border-blue-600 pl-2">JUDUL Ciptaan #8</td>
                        <td className="border border-blue-600 pl-2">Deskripsi</td>
                        <td className="border border-blue-600 pl-2 text-lgtblue"><a href="#">Tampilkan</a></td>
-                       <td className="border border-blue-600 pl-2 text-lgtblue"><button onClick={handleDetailPending}>Pending</button></td>
                     </tr>
                     <tr className="bg-lgtbluebg text-black">
                         <td className="border border-blue-600 pl-2 px-1 py-1">9</td>
@@ -125,7 +116,6 @@ export default function Home() {
                        <td className="border border-blue-600 pl-2">JUDUL Ciptaan #9</td>
                        <td className="border border-blue-600 pl-2">Deskripsi</td>
                        <td className="border border-blue-600 pl-2 text-lgtblue"><a href="#">Tampilkan</a></td>
-                       <td className="border border-blue-600 pl-2 text-greenapr">Approved</td>
                     </tr>
                     <tr className="bg-darkbluebg text-black">
                         <td className="border border-blue-600 pl-2 px-1 py-1">10</td>
@@ -133,7 +123,6 @@ export default function Home() {
                        <td className="border border-blue-600 pl-2">JUDUL Ciptaan #10</td>
                        <td className="border border-blue-600 pl-2">Deskripsi</td>
                        <td className="border border-blue-600 pl-2 text-lgtblue"><a href="#">Tampilkan</a></td>
-                       <td className="border border-blue-600 pl-2 text-greenapr">Approved</td>
                     </tr>
                 </tbody>
             </table>    

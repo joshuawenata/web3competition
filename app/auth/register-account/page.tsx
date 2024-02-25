@@ -1,7 +1,8 @@
 "use client";
 import { useRouter } from "next/navigation";
 import Navbar from "../../components/navbar";
-import { FormEvent, useState } from 'react'
+import { FormEvent, useEffect, useState } from 'react';
+import bcrypt from 'bcryptjs';
 
 export default function Home() {
   const router = useRouter();
@@ -10,29 +11,59 @@ export default function Home() {
     NIK: '',
     nama_lengkap: '',
     email: '',
-    password: ''
-    // Add more fields as needed
+    password: '',
+    hashedPassword: '',
+    confPassword: ''
   });
+
+  useEffect(() => {
+    // Update the hashed password when the password changes
+    hashPassword();
+  }, [formData.password]);
+  
 
   const handleChange = (e: any) => {
     // Update the state when input values change
+    const confPasswordInput = document.getElementById('confPassword') as HTMLInputElement | null;
+    if(confPasswordInput){
+      confPasswordInput.setCustomValidity('')
+    }
     setFormData({
       ...formData,
       [e.target.id]: e.target.value,
     });
   };
 
+  const hashPassword = async () => {
+    const hashedPassword = await bcrypt.hash(formData.password, 10);
+
+    // Update the formData state with the hashed password
+    setFormData(prevFormData => ({
+      ...prevFormData,
+      hashedPassword: hashedPassword,
+    }));
+  }
+
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     
+    if(formData.password !== formData.confPassword){
+      const confPasswordInput = document.getElementById('confPassword') as HTMLInputElement | null;
+      if (confPasswordInput) {
+        confPasswordInput.setCustomValidity('Passwords do not match!');
+        return;
+      }
+    }
+
     try {
+
       const response = await fetch('http://localhost:4000/register-account', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           // You may need to include additional headers like authentication tokens
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({NIK: formData.NIK, nama_lengkap: formData.nama_lengkap, email: formData.email, password: formData.hashedPassword}),
       });
 
       if (response.ok) {
@@ -114,6 +145,7 @@ export default function Home() {
                     id="confPassword"
                     className="bg-gray-50 border font-krona-one text-base h-16 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-5 p-2.5  dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500" 
                     placeholder="Confirmation Password"
+                    onChange={handleChange}
                     style={{ width: "32rem" }} 
                     required />
               </div>

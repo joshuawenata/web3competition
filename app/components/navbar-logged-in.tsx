@@ -17,7 +17,7 @@ const NavbarLoggedin = () => {
     }
 
     const handleHome = () => {
-        router.push('/')
+        router.push('/see-haki')
     }
 
     return (

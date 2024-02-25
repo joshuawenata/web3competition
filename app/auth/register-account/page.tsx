@@ -1,7 +1,8 @@
 "use client";
 import { useRouter } from "next/navigation";
 import Navbar from "../../components/navbar";
-import { FormEvent, useState } from 'react'
+import { FormEvent, useState } from 'react';
+import bcrypt from 'bcryptjs';
 
 export default function Home() {
   const router = useRouter();
@@ -11,7 +12,6 @@ export default function Home() {
     nama_lengkap: '',
     email: '',
     password: ''
-    // Add more fields as needed
   });
 
   const handleChange = (e: any) => {
@@ -20,12 +20,24 @@ export default function Home() {
       ...formData,
       [e.target.id]: e.target.value,
     });
+    hashPassword();
   };
+
+  const hashPassword = async () => {
+    const hashedPassword = await bcrypt.hash(formData.password, 10);
+
+    // Update the formData state with the hashed password
+    setFormData(prevFormData => ({
+      ...prevFormData,
+      password: hashedPassword,
+    }));
+  }
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    
+
     try {
+
       const response = await fetch('http://localhost:4000/register-account', {
         method: 'POST',
         headers: {

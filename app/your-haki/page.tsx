@@ -7,12 +7,18 @@ import NavbarLoggedin from "../components/navbar-logged-in";
 export default function Home() {
     const router = useRouter();
 
-    const handleDetail = () => {
-      router.push('/detail/with-reason')
+    const handleDetailRejected = () => {
+      router.push('/detail/with-reason/rejected')
     }  
+    const handleDetailPending = () => {
+      router.push('/detail/with-reason/pending')
+    }  
+    const handleDetailApproved = () => {
+      router.push('/detail/without-reason/approved')
+    }
 
     return(
-        <main className="bg-background h-screen w-screen">
+    <main className="bg-background h-screen w-screen">
       {/* font krona one */}
       <link rel="preconnect" href="https://fonts.googleapis.com"/>
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin=""/>
@@ -40,94 +46,94 @@ export default function Home() {
             <table className="table w-screen font-krona-one">
                 <thead>
                     <tr className="py-10">
-                    <th className="border border-blue-600 bg-bluesk px-1">No</th>
-                    <th className="border border-blue-600 bg-bluesk px">Item ID</th>
-                    <th className="border border-blue-600 bg-bluesk">Judul</th>
-                    <th className="border border-blue-600 bg-bluesk">Deskripsi</th>
-                    <th className="border border-blue-600 bg-bluesk">Barcode</th>
-                    <th className="border border-blue-600 bg-bluesk">Status</th>
+                    <th className="border border-blue-600 pl-2 bg-bluesk px-1">No</th>
+                    <th className="border border-blue-600 pl-2 bg-bluesk px">Item ID</th>
+                    <th className="border border-blue-600 pl-2 bg-bluesk">Judul</th>
+                    <th className="border border-blue-600 pl-2 bg-bluesk">Deskripsi</th>
+                    <th className="border border-blue-600 pl-2 bg-bluesk">Barcode</th>
+                    <th className="border border-blue-600 pl-2 bg-bluesk">Status</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr className="bg-indigo-200 text-black">
-                       <td className="border border-blue-600 px-1 py-1">1</td>
-                       <td className="border border-blue-600">0xHA7235921</td>
-                       <td className="border border-blue-600">JUDUL Ciptaan #1</td>
-                       <td className="border border-blue-600">Deskripsi</td>
-                       <td className="border border-blue-600"><a href="#">Tampilkan</a></td>
-                       <td className="border border-blue-600 text-green-500">Approved</td>
+                       <td className="border border-blue-600 pl-2 px-1 py-1">1</td>
+                       <td className="border border-blue-600 pl-2">0xHA7235921</td>
+                       <td className="border border-blue-600 pl-2">JUDUL Ciptaan #1</td>
+                       <td className="border border-blue-600 pl-2">Deskripsi</td>
+                       <td className="border border-blue-600 pl-2"><a href="#">Tampilkan</a></td>
+                       <td className="border border-blue-600 pl-2 text-green-500"><button onClick={handleDetailApproved}>Approved</button></td>
                     </tr>
                     <tr className="text-black">
-                        <td className="border border-blue-600 px-1 py-1">2</td>
-                       <td className="border border-blue-600">0xPL1836529</td>
-                       <td className="border border-blue-600">JUDUL Ciptaan #2</td>
-                       <td className="border border-blue-600">Deskripsi</td>
-                       <td className="border border-blue-600"><a href="#">Tampilkan</a></td>
-                       <td className="border border-blue-600 text-red-600"><button onClick={handleDetail}>Rejected</button></td>
+                        <td className="border border-blue-600 pl-2 px-1 py-1">2</td>
+                       <td className="border border-blue-600 pl-2">0xPL1836529</td>
+                       <td className="border border-blue-600 pl-2">JUDUL Ciptaan #2</td>
+                       <td className="border border-blue-600 pl-2">Deskripsi</td>
+                       <td className="border border-blue-600 pl-2"><a href="#">Tampilkan</a></td>
+                       <td className="border border-blue-600 pl-2 text-red-600"><button onClick={handleDetailRejected}>Rejected</button></td>
                     </tr>
                     <tr className="bg-indigo-200 text-black">
-                        <td className="border border-blue-600 px-1 py-1">3</td>
-                       <td className="border border-blue-600">0xMK5998716</td>
-                       <td className="border border-blue-600">JUDUL Ciptaan #3</td>
-                       <td className="border border-blue-600">Deskripsi</td>
-                       <td className="border border-blue-600"><a href="#">Tampilkan</a></td>
-                       <td className="border border-blue-600 text-green-500">Approved</td>
+                        <td className="border border-blue-600 pl-2 px-1 py-1">3</td>
+                       <td className="border border-blue-600 pl-2">0xMK5998716</td>
+                       <td className="border border-blue-600 pl-2">JUDUL Ciptaan #3</td>
+                       <td className="border border-blue-600 pl-2">Deskripsi</td>
+                       <td className="border border-blue-600 pl-2"><a href="#">Tampilkan</a></td>
+                       <td className="border border-blue-600 pl-2 text-green-500">Approved</td>
                     </tr>
                     <tr className="text-black">
-                        <td className="border border-blue-600 px-1 py-1">4</td>
-                       <td className="border border-blue-600">0xFH3935275</td>
-                       <td className="border border-blue-600">JUDUL Ciptaan #4</td>
-                       <td className="border border-blue-600">Deskripsi</td>
-                       <td className="border border-blue-600"><a href="#">Tampilkan</a></td>
-                       <td className="border border-blue-600 text-green-500">Approved</td>
+                        <td className="border border-blue-600 pl-2 px-1 py-1">4</td>
+                       <td className="border border-blue-600 pl-2">0xFH3935275</td>
+                       <td className="border border-blue-600 pl-2">JUDUL Ciptaan #4</td>
+                       <td className="border border-blue-600 pl-2">Deskripsi</td>
+                       <td className="border border-blue-600 pl-2"><a href="#">Tampilkan</a></td>
+                       <td className="border border-blue-600 pl-2 text-green-500">Approved</td>
                     </tr>
                     <tr className="bg-indigo-200 text-black">
-                        <td className="border border-blue-600 px-1 py-1">5</td>
-                       <td className="border border-blue-600">0xLK8255649</td>
-                       <td className="border border-blue-600">JUDUL Ciptaan #5</td>
-                       <td className="border border-blue-600">Deskripsi</td>
-                       <td className="border border-blue-600"><a href="#">Tampilkan</a></td>
-                       <td className="border border-blue-600 text-green-500">Approved</td>
+                        <td className="border border-blue-600 pl-2 px-1 py-1">5</td>
+                       <td className="border border-blue-600 pl-2">0xLK8255649</td>
+                       <td className="border border-blue-600 pl-2">JUDUL Ciptaan #5</td>
+                       <td className="border border-blue-600 pl-2">Deskripsi</td>
+                       <td className="border border-blue-600 pl-2"><a href="#">Tampilkan</a></td>
+                       <td className="border border-blue-600 pl-2 text-green-500">Approved</td>
                     </tr>
                     <tr className="text-black">
-                        <td className="border border-blue-600 px-1 py-1">6</td>
-                       <td className="border border-blue-600">0xKU7624108</td>
-                       <td className="border border-blue-600">JUDUL Ciptaan #6</td>
-                       <td className="border border-blue-600">Deskripsi</td>
-                       <td className="border border-blue-600"><a href="#">Tampilkan</a></td>
-                       <td className="border border-blue-600 text-red-600">Rejected</td>
+                        <td className="border border-blue-600 pl-2 px-1 py-1">6</td>
+                       <td className="border border-blue-600 pl-2">0xKU7624108</td>
+                       <td className="border border-blue-600 pl-2">JUDUL Ciptaan #6</td>
+                       <td className="border border-blue-600 pl-2">Deskripsi</td>
+                       <td className="border border-blue-600 pl-2"><a href="#">Tampilkan</a></td>
+                       <td className="border border-blue-600 pl-2 text-red-600">Rejected</td>
                     </tr>
                     <tr className="bg-indigo-200 text-black">
-                        <td className="border border-blue-600 px-1 py-1">7</td>
-                       <td className="border border-blue-600">0xUY8172562</td>
-                       <td className="border border-blue-600">JUDUL Ciptaan #7</td>
-                       <td className="border border-blue-600">Deskripsi</td>
-                       <td className="border border-blue-600"><a href="#">Tampilkan</a></td>
-                       <td className="border border-blue-600 text-red-600">Rejected</td>
+                        <td className="border border-blue-600 pl-2 px-1 py-1">7</td>
+                       <td className="border border-blue-600 pl-2">0xUY8172562</td>
+                       <td className="border border-blue-600 pl-2">JUDUL Ciptaan #7</td>
+                       <td className="border border-blue-600 pl-2">Deskripsi</td>
+                       <td className="border border-blue-600 pl-2"><a href="#">Tampilkan</a></td>
+                       <td className="border border-blue-600 pl-2 text-red-600">Rejected</td>
                     </tr>
                     <tr className="text-black">
-                        <td className="border border-blue-600 px-1 py-1">8</td>
-                       <td className="border border-blue-600">0xMB9125420</td>
-                       <td className="border border-blue-600">JUDUL Ciptaan #8</td>
-                       <td className="border border-blue-600">Deskripsi</td>
-                       <td className="border border-blue-600"><a href="#">Tampilkan</a></td>
-                       <td className="border border-blue-600 text-blue-500">Pending</td>
+                        <td className="border border-blue-600 pl-2 px-1 py-1">8</td>
+                       <td className="border border-blue-600 pl-2">0xMB9125420</td>
+                       <td className="border border-blue-600 pl-2">JUDUL Ciptaan #8</td>
+                       <td className="border border-blue-600 pl-2">Deskripsi</td>
+                       <td className="border border-blue-600 pl-2"><a href="#">Tampilkan</a></td>
+                       <td className="border border-blue-600 pl-2 text-blue-500"><button onClick={handleDetailPending}>Pending</button></td>
                     </tr>
                     <tr className="bg-indigo-200 text-black">
-                        <td className="border border-blue-600 px-1 py-1">9</td>
-                       <td className="border border-blue-600">0xGQ2012393</td>
-                       <td className="border border-blue-600">JUDUL Ciptaan #9</td>
-                       <td className="border border-blue-600">Deskripsi</td>
-                       <td className="border border-blue-600"><a href="#">Tampilkan</a></td>
-                       <td className="border border-blue-600 text-green-500">Approved</td>
+                        <td className="border border-blue-600 pl-2 px-1 py-1">9</td>
+                       <td className="border border-blue-600 pl-2">0xGQ2012393</td>
+                       <td className="border border-blue-600 pl-2">JUDUL Ciptaan #9</td>
+                       <td className="border border-blue-600 pl-2">Deskripsi</td>
+                       <td className="border border-blue-600 pl-2"><a href="#">Tampilkan</a></td>
+                       <td className="border border-blue-600 pl-2 text-green-500">Approved</td>
                     </tr>
                     <tr className="text-black">
-                        <td className="border border-blue-600 px-1 py-1">10</td>
-                       <td className="border border-blue-600">0xAK4712073</td>
-                       <td className="border border-blue-600">JUDUL Ciptaan #10</td>
-                       <td className="border border-blue-600">Deskripsi</td>
-                       <td className="border border-blue-600"><a href="#">Tampilkan</a></td>
-                       <td className="border border-blue-600 text-green-500">Approved</td>
+                        <td className="border border-blue-600 pl-2 px-1 py-1">10</td>
+                       <td className="border border-blue-600 pl-2">0xAK4712073</td>
+                       <td className="border border-blue-600 pl-2">JUDUL Ciptaan #10</td>
+                       <td className="border border-blue-600 pl-2">Deskripsi</td>
+                       <td className="border border-blue-600 pl-2"><a href="#">Tampilkan</a></td>
+                       <td className="border border-blue-600 pl-2 text-green-500">Approved</td>
                     </tr>
                 </tbody>
             </table>    
@@ -155,6 +161,6 @@ export default function Home() {
         </div>
         
 
-      </main>
+    </main>
     );
 }

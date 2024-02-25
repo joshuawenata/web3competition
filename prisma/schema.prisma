@@ -15,9 +15,9 @@ datasource db {
 
 model User {
   id Int @id @default(autoincrement())
-  NIK String @db.VarChar(255) @unique
+  email String @db.VarChar(255) @unique
+  NIK String @db.VarChar(255) 
   nama_lengkap String @db.VarChar(255)
-  email String @db.VarChar(255)
   password String @db.VarChar(255)
 }
 

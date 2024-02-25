@@ -1,13 +1,50 @@
 "use client";
 import { useRouter } from "next/navigation";
 import Navbar from "../../components/navbar";
-
+import { FormEvent, useState } from "react";
 
 export default function Home() {
     const router = useRouter();
 
-    const handleSubmit = () => {
-        router.push('/your-haki')
+    const [formData, setFormData] = useState({
+      email: '',
+      password: '',
+    });
+
+    const handleChange = (e: any) => {
+      // Update the state when input values change
+      setFormData({
+        ...formData,
+        [e.target.id]: e.target.value,
+      });
+    };
+
+    const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+      
+      try {
+
+        const response = await fetch('http://localhost:4000/login-account', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            // You may need to include additional headers like authentication tokens
+          },
+          body: JSON.stringify({email: formData.email, password: formData.password}),
+        });
+  
+        if (response.ok) {
+          // Handle successful response
+          router.push('/your-haki');
+        } else {
+          // Handle error response
+          console.error('Error:', response.statusText);
+        }
+
+      } catch (error) {
+        console.error('Error making post request:', error);
+      }
+
     }
     
     return (
@@ -25,37 +62,37 @@ export default function Home() {
       <Navbar/>
 
       <div className="flex flex-row place-content-center">
-        <div>
-          <div className="flex justify-center mt-20">
-            <form> 
-                <div className="relative w-full mt-3">
-                    <input 
-                      type="text" 
-                      id="email" 
-                      className="bg-gray-50 border font-krona-one text-base h-16 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-5 p-2.5  dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500" 
-                      placeholder="Email"
-                      style={{ width: "32rem" }} 
-                      required />
-                </div>
-                <div className="relative w-full mt-3">
-                    <input 
-                      type="password" 
-                      id="password" 
-                      className="bg-gray-50 border font-krona-one text-base h-16 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-5 p-2.5  dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500" 
-                      placeholder="Password"
-                      style={{ width: "32rem" }} 
-                      required />
-                </div>
-                
-            </form>
 
-          </div>
+        <div className="flex justify-center mt-20">
 
-          <div className="flex justify-center mt-10">
-            <button onClick={handleSubmit} className="text-xl font-krona-one bg-bluesk pl-10 pr-10 pt-5 pb-5 rounded-xl w-80">
-              LOGIN
-            </button>
-          </div>
+          <form onSubmit={handleSubmit}> 
+
+            <div className="relative w-full mt-3">
+                <input 
+                  type="text" 
+                  id="email" 
+                  className="bg-gray-50 border font-krona-one text-base h-16 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-5 p-2.5  dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+                  placeholder="Email"
+                  onChange={handleChange}
+                  style={{ width: "32rem" }} 
+                  required />
+            </div>
+            <div className="relative w-full mt-3">
+                <input 
+                  type="password" 
+                  id="password" 
+                  className="bg-gray-50 border font-krona-one text-base h-16 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-5 p-2.5  dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+                  placeholder="Password"
+                  onChange={handleChange}
+                  style={{ width: "32rem" }} 
+                  required />
+            </div>
+              
+            <div className="flex justify-center mt-10">
+              <input value="LOGIN" type="submit" className="text-xl font-krona-one bg-bluesk pl-10 pr-10 pt-5 pb-5 rounded-xl w-80"/>
+            </div>
+
+          </form>
 
         </div>
 

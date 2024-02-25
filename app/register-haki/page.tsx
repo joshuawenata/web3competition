@@ -11,7 +11,7 @@ export default function Home() {
   }
   
   return (
-    <main className="bg-background h-screen w-screen">
+    <main className="bg-background min-h-screen w-screen">
       {/* font krona one */}
       <link rel="preconnect" href="https://fonts.googleapis.com"/>
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin=""/>
@@ -26,7 +26,7 @@ export default function Home() {
 
       <div className="flex flex-row place-content-center">
 
-        <svg width="321" height="498" viewBox="0 0 321 498" fill="none" xmlns="http://www.w3.org/2000/svg" className="mt-20">
+        <svg width="321" height="498" viewBox="0 0 321 498" fill="none" xmlns="http://www.w3.org/2000/svg" style={{marginTop:"2rem"}}>
             <path d="M24.248 324.406H124.904V484.161H24.248V324.406Z" fill="#B2B2B2"/>
             <path d="M124.511 324.406H225.167V484.161H124.511V324.406Z" fill="#D1D1D1"/>
             <path d="M177.246 130.694L181.537 216.566L201.714 279.537H165.389L146.522 225.281L140.626 163.621L177.246 130.694Z" fill="#F7EBE7"/>
@@ -63,16 +63,21 @@ export default function Home() {
         {/* form section */}
         <div className="pl-40">
           <div className="flex justify-center">
-            <form> 
-                <div className="relative w-full mt-3">
-                    <input 
-                      type="text" 
-                      id="jenis" 
-                      className="bg-gray-50 border font-krona-one text-base h-16 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-5 p-2.5  dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500" 
-                      placeholder="Jenis Ciptaan"
-                      style={{ width: "36rem" }} 
-                      required />
+            <form>
+                <div>
+                  <select 
+                    id="jenis" 
+                    className="bg-gray-50 border font-krona-one text-base h-16 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-5 p-2.5  dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    style={{ width: "36rem" }} >
+                    <option selected disabled value="">Jenis Ciptaan</option>
+                    <option value="barang">BARANG</option>
+                    <option value="video">VIDEO</option>
+                    <option value="seni">SENI</option>
+                    <option value="ilmu-pengetahuan">ILMU PENGETAHUAN</option>
+                    <option value="fotografi">FOTOGRAFI</option>
+                  </select>
                 </div>
+
                 <div className="relative w-full mt-3">
                     <input 
                       type="text" 
@@ -92,29 +97,40 @@ export default function Home() {
                       required />
                 </div>
                 <div className="relative w-full mt-3">
-                    <input 
-                      type="text" 
-                      id="country" 
-                      className="bg-gray-50 border font-krona-one text-base h-16 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-5 p-2.5  dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500" 
-                      placeholder="Negara Ciptaan Diumumkan"
-                      style={{ width: "36rem" }} 
-                      required />
+                  <select 
+                    id="negara" 
+                    className="bg-gray-50 border font-krona-one text-base h-16 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-5 p-2.5  dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    style={{ width: "36rem" }}>
+                    <option selected disabled value="">Negara Ciptaan Diumumkan</option>
+                    <option value="indonesia">INDONESIA</option>
+                    <option value="singapura">SINGAPURA</option>
+                    <option value="malaysia">MALAYSIA</option>
+                    <option value="arab-saudi">ARAB SAUDI</option>
+                    <option value="china">CHINA</option>
+                    <option value="amerika-serikat">AMERIKA SERIKAT</option>
+                    <option value="jepang">JEPANG</option>
+
+                  </select>
                 </div>
                 <div className="relative w-full mt-3">
-                    <input 
-                      type="text" 
-                      id="city" 
-                      className="bg-gray-50 border font-krona-one text-base h-16 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-5 p-2.5  dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500" 
-                      placeholder="Kota Ciptaan Diumumkan"
-                      style={{ width: "36rem" }} 
-                      required />
+                  <select 
+                    id="kota" 
+                    className="bg-gray-50 border font-krona-one text-base h-16 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-5 p-2.5  dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    style={{ width: "36rem" }} >
+                    <option selected disabled value="">Kota Ciptaan Diumumkan</option>
+                    <option value="-">-</option>
+                    <option value="-">-</option>
+                    <option value="-">-</option>
+                    <option value="-">-</option>
+
+                  </select>
                 </div>
                 <div className="relative w-full mt-3">
                     <textarea
                       id="description" 
-                      className="bg-gray-50 border font-krona-one text-base h-32 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-5 p-2.5  dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+                      className="bg-gray-50 border font-krona-one text-base border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-5 p-2.5  dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500" 
                       placeholder="Deskripsi Singkat"
-                      style={{ width: "36rem" }} 
+                      style={{ width: "36rem", height: "100%"}} 
                       required />
                 </div>
     

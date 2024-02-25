@@ -48,7 +48,7 @@ export default function Home() {
     }
     
     return (
-    <main className="bg-background h-screen w-screen">
+    <main className="bg-background min-h-screen w-screen">
       {/* font krona one */}
       <link rel="preconnect" href="https://fonts.googleapis.com"/>
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin=""/>

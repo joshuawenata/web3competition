@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 export default function Home() {
   const router = useRouter();
 
-  const handleSubmit = () => {
+  const handleCancel = () => {
     router.push('/your-haki')
   }
   
@@ -152,7 +152,7 @@ export default function Home() {
       </div>
       <div className="flex justify-center mt-10">
             <button 
-              onClick={handleSubmit}
+              onClick={handleCancel}
               className="text-xl font-krona-one bg-bluesk pl-10 pr-10 pt-5 pb-5 rounded-xl"
               style={{ width: "24rem" }} >
               CANCEL

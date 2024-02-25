@@ -13,6 +13,13 @@ module.exports = {
         'bluesa': '#9BB1D0',
         'bluesk': '#4663AC',
         'bluesi': '#FFFFFF',
+        'darkblue': '#170072',
+        'lgtblue': '#0070E0',
+        'lgtbluebg': '#D3E4F4',
+        'darkbluebg': '#C5D7EB',
+        'greenapr': '#009F5C',
+        'gray': '#A0A0A0',
+        'reds': '#E00000', 
       },
       fontFamily: {
         'krona-one': ['"Krona One"', 'sans-serif'],

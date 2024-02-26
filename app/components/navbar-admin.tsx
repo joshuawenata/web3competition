@@ -1,23 +1,19 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 
-const NavbarLoggedin = () => {
+const NavbarAdmin = () => {
     const router = useRouter();
     
     const handleLogoClick = () => {
         router.push('/see-haki')
     }
 
-    const handleRegisterHaki = () => {
-        router.push('/register-haki')
+    const handleApproveHaki = () => {
+        router.push('/admin-page/approval')
     }
 
-    const handleYourHaki = () => {
-        router.push('/your-haki')
-    }
-
-    const handleHome = () => {
-        router.push('/see-haki')
+    const handleRiwayatApproval = () => {
+        router.push('/admin-page/riwayat-approval')
     }
 
     const handleLogout = () => {
@@ -38,17 +34,12 @@ const NavbarLoggedin = () => {
                 </svg>
             </button>
             
-            <button onClick={handleHome} className="pl-80 text-xl font-krona-one text-blues">
-            Home
+            <button onClick={handleApproveHaki} className="pl-80 text-xl font-krona-one text-blues">
+            Approve HAKI
             </button>
             
-            <button onClick={handleRegisterHaki} className="pl-20 text-xl font-krona-one text-blues">
-            Register HAKI
-            </button>
-            
-
-            <button onClick={handleYourHaki} className="pl-20 text-xl font-krona-one text-blues">
-            Your HAKI
+            <button onClick={handleRiwayatApproval} className="pl-20 text-xl font-krona-one text-blues">
+            Riwayat Approval
             </button>
 
             <button onClick={handleLogout} className="pl-20 text-xl font-krona-one text-red-500">
@@ -60,4 +51,4 @@ const NavbarLoggedin = () => {
     )
 }
 
-export default NavbarLoggedin;
+export default NavbarAdmin;

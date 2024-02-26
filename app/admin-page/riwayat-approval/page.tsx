@@ -1,13 +1,10 @@
 "use client";
 
+import NavbarAdmin from "@/app/components/navbar-admin";
 import { useRouter } from "next/navigation";
-import Navbar from "../components/navbar";
-import NavbarLoggedin from "../components/navbar-logged-in";
-import { useEffect, useState } from "react";
 
 export default function Home() {
     const router = useRouter();
-    const [items, setItems] = useState([]);
 
     const handleDetailRejected = () => {
       router.push('/detail/with-reason/rejected')
@@ -18,8 +15,6 @@ export default function Home() {
     const handleDetailApproved = () => {
       router.push('/detail/without-reason/approved')
     }
-
-    
 
     return(
     <main className="bg-background min-h-screen w-screen">
@@ -33,7 +28,7 @@ export default function Home() {
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin=""/>
       <link href="https://fonts.googleapis.com/css2?family=Krona+One&family=Luckiest+Guy&display=swap" rel="stylesheet"/>
       
-      <NavbarLoggedin />
+      <NavbarAdmin />
 
         <div className="flex flex-row place-content-start pl-10 pr-10 pt-5 pb-5">
             <div className="">
@@ -42,7 +37,7 @@ export default function Home() {
                 </button>
             </div>
             <div className="text-4xl font-krona-one pl-10 pr-10 pt-3 pb-3 text-darkblue	">
-                Your HAKI
+                Riwayat Approval
             </div>
             
         </div>

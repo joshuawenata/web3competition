@@ -5,7 +5,7 @@ const NavbarLoggedin = () => {
     const router = useRouter();
     
     const handleLogoClick = () => {
-        router.push('/')
+        router.push('/see-haki')
     }
 
     const handleRegisterHaki = () => {

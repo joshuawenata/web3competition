@@ -18,7 +18,7 @@ module.exports = {
         'lgtbluebg': '#D3E4F4',
         'darkbluebg': '#C5D7EB',
         'greenapr': '#009F5C',
-        'gray': '#A0A0A0',
+        'grays': '#A0A0A0',
         'reds': '#E00000', 
       },
       fontFamily: {

@@ -1,22 +1,53 @@
 "use client";
 import { useRouter } from "next/navigation";
-import Navbar from "../components/navbar";
+import Navbar from "../../components/navbar";
+import { FormEvent, useState } from "react";
 
 export default function Home() {
-  const router = useRouter();
+    const router = useRouter();
 
-  const handleRegisterAccount = () => {
-    router.push('/auth/register-account')
-  }
+    const [formData, setFormData] = useState({
+      email: '',
+      password: '',
+    });
 
-  const handleLogin = () => {
-    router.push('/auth/login')
-  }
-  const handleLoginAsAdmin = () => {
-    router.push('/auth/login-as-admin')
-  }
+    const handleChange = (e: any) => {
+      // Update the state when input values change
+      setFormData({
+        ...formData,
+        [e.target.id]: e.target.value,
+      });
+    };
 
-  return (
+    const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+      
+      try {
+
+        const response = await fetch('http://localhost:4000/login-account', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            // You may need to include additional headers like authentication tokens
+          },
+          body: JSON.stringify({email: formData.email, password: formData.password}),
+        });
+  
+        if (response.ok) {
+          // Handle successful response
+          router.push('/admin-page/approval');
+        } else {
+          // Handle error response
+          console.error('Error:', response.statusText);
+        }
+
+      } catch (error) {
+        console.error('Error making post request:', error);
+      }
+
+    }
+    
+    return (
     <main className="bg-background min-h-screen w-screen">
       {/* font krona one */}
       <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -32,25 +63,43 @@ export default function Home() {
 
       <div className="flex flex-row place-content-center">
 
-        <div>
+      
 
-          <div className="flex justify-center mt-20">
-            <button onClick={handleRegisterAccount} className="text-xl font-krona-one bg-bluesk w-80 h-16 rounded-xl">
-              REGISTER
-            </button>
+        <div className="flex justify-center" style={{marginTop:"2rem"}}>
+
+        
+
+          <form onSubmit={handleSubmit}> 
+          <div className="text-2xl font-krona-one pt-3 pb-5 text-darkblue">
+            Administrator Login
           </div>
 
-          <div className="flex justify-center mt-5">
-            <button onClick={handleLogin} className="text-xl font-krona-one bg-bluesk w-80 h-16 rounded-xl">
-              LOGIN
-            </button>
-          </div>
+            <div className="relative w-full mt-3">
+                <input 
+                  type="text" 
+                  id="email" 
+                  className="bg-gray-50 border font-krona-one text-base h-16 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-5 p-2.5  dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+                  placeholder="Email"
+                  onChange={handleChange}
+                  style={{ width: "32rem" }} 
+                  required />
+            </div>
+            <div className="relative w-full mt-3">
+                <input 
+                  type="password" 
+                  id="password" 
+                  className="bg-gray-50 border font-krona-one text-base h-16 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-5 p-2.5  dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+                  placeholder="Password"
+                  onChange={handleChange}
+                  style={{ width: "32rem" }} 
+                  required />
+            </div>
+              
+            <div className="flex justify-center mt-10">
+              <input value="LOGIN" type="submit" className="text-xl font-krona-one bg-bluesk pl-10 pr-10 pt-5 pb-5 rounded-xl w-80"/>
+            </div>
 
-          <div className="flex justify-center mt-5">
-            <button onClick={handleLoginAsAdmin} className="text-xl font-krona-one text-bluesk">
-              LOGIN AS ADMIN?
-            </button>
-          </div>
+          </form>
 
         </div>
 
@@ -124,5 +173,5 @@ export default function Home() {
 
       </div>
     </main>
-  );
+    )
 }

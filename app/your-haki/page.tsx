@@ -4,6 +4,8 @@ import { useRouter } from "next/navigation";
 import Navbar from "../components/navbar";
 import NavbarLoggedin from "../components/navbar-logged-in";
 import { useEffect, useState } from "react";
+import Link from "next/link";
+import { stringify } from "querystring";
 
 interface Haki {
     id: number;
@@ -19,7 +21,7 @@ interface Haki {
 
 export default function Home() {
     const router = useRouter();
-
+    
     const [items, setItems] = useState<Haki[]>([]);
 
     const fetchHaki = async () => {
@@ -324,13 +326,26 @@ export default function Home() {
                                 <td className="border border-blue-600 pl-2">{item.judul_ciptaan}</td>
                                 <td className="border border-blue-600 pl-2">{item.deskripsi_ciptaan}</td>
                                 <td className="border border-blue-600 pl-2 text-lgtblue"><a href="#">Tampilkan</a></td>
+                                
                                 {item.status=="pending"?
-                                    <td className="border border-blue-600 pl-2 text-lgtblue"><a onClick={() => router.push('/detail/with-reason/pending')}>{item.status}</a></td>
+                                        <td className="border border-blue-600 pl-2 text-lgtblue">
+                                            <Link href={{ pathname: '/detail/with-reason/pending' }} onClick={() => {localStorage.setItem('itemid',String(item.id))}}>
+                                                {item.status}
+                                            </Link>
+                                        </td>
                                     :
                                 item.status=="approved"?
-                                    <td className="border border-blue-600 pl-2 text-greenapr"><a onClick={() => router.push('/detail/without-reason/approved')}>{item.status}</a></td>
+                                        <td className="border border-blue-600 pl-2 text-greenapr">
+                                            <Link href={{ pathname: '/detail/without-reason/approved' }} onClick={() => {localStorage.setItem('itemid',String(item.id))}}>
+                                                {item.status}
+                                            </Link>
+                                        </td>
                                     :
-                                    <td className="border border-blue-600 pl-2 text-reds"><a onClick={() => router.push('/detail/with-reason/rejected')}>{item.status}</a></td>
+                                        <td className="border border-blue-600 pl-2 text-reds">
+                                            <Link href={{ pathname: '/detail/with-reason/rejected' }} onClick={() => {localStorage.setItem('itemid',String(item.id))}}>
+                                                {item.status}
+                                            </Link>
+                                        </td>
                                 }
                             </tr>
                         ))

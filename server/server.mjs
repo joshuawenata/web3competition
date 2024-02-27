@@ -104,6 +104,21 @@ app.get('/api/session', (req, res) => {
   }
 });
 
+app.get('/get-username', async (req, res) => {
+  try {
+    const uid = req.session.uid;
+    const user = await prisma.user.findUnique({
+      where:{
+        id: uid
+      }
+    })
+    res.status(200).json({ username: user.nama_lengkap });
+  } catch (error) {
+    console.error('Error fetching session:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
 app.get('/fetch-see-haki', async (req, res) => {
   const item = await prisma.haki.findMany();
   res.status(201).json({ item: item })
@@ -117,6 +132,22 @@ app.get('/fetch-your-haki', async (req, res) => {
         uid: uid,
       },
     });
+    res.status(201).json({ item: item })
+  } catch (error) {
+    console.error('Error fetching session:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+})
+
+app.post('/find-haki', async (req, res) => {
+  try {
+    const itemid = req.body.itemid;
+    const item = await prisma.haki.findMany({
+      where: {
+        id: parseInt(itemid),
+      },
+    });
+    console.log(item)
     res.status(201).json({ item: item })
   } catch (error) {
     console.error('Error fetching session:', error);

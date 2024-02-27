@@ -1,8 +1,7 @@
 "use client";
 
+import NavbarAdmin from "@/app/components/navbar-admin";
 import { useRouter } from "next/navigation";
-import Navbar from "../components/navbar";
-import NavbarLoggedin from "../components/navbar-logged-in";
 import { useState } from "react";
 
 export default function Home() {
@@ -18,9 +17,6 @@ export default function Home() {
       router.push('/detail/without-reason/approved')
     }
 
-    const handleChange = () => {
-
-    }
     const [filterEnabled, setFilter] = useState(false);
     const [text, setText] = useState({jenis : '', negara: '', kota: ''});
 
@@ -36,8 +32,6 @@ export default function Home() {
         }
     };
 
-    
-
     return(
     <main className="bg-background min-h-screen w-screen">
       {/* font krona one */}
@@ -50,7 +44,7 @@ export default function Home() {
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin=""/>
       <link href="https://fonts.googleapis.com/css2?family=Krona+One&family=Luckiest+Guy&display=swap" rel="stylesheet"/>
       
-      <NavbarLoggedin />
+      <NavbarAdmin />
 
         <div className="flex flex-row place-content-start pl-10 pr-10 pt-5 pb-5">
             <div className="">
@@ -59,11 +53,10 @@ export default function Home() {
                 </button>
             </div>
             <div className="text-4xl font-krona-one pl-10 pr-10 pt-3 pb-3 text-darkblue	">
-                Discover HAKI
+                Riwayat Approval
             </div>
             
         </div>
-        
         <div>
             {filterEnabled ? (
                 <div className="flex flex-row place-content-start pl-10">
@@ -276,6 +269,7 @@ export default function Home() {
                         <th className="border border-blue-600 pl-2 bg-darkblue">Judul</th>
                         <th className="border border-blue-600 pl-2 bg-darkblue">Deskripsi</th>
                         <th className="border border-blue-600 pl-2 bg-darkblue">Barcode</th>
+                        <th className="border border-blue-600 pl-2 bg-darkblue">Status</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -285,6 +279,7 @@ export default function Home() {
                         <td className="border border-blue-600 pl-2">JUDUL Ciptaan #1</td>
                         <td className="border border-blue-600 pl-2">Deskripsi</td>
                         <td className="border border-blue-600 pl-2 text-lgtblue"><a href="#">Tampilkan</a></td>
+                        <td className="border border-blue-600 pl-2 text-greenapr"><button onClick={handleDetailApproved}>Approved</button></td>
                         </tr>
                         <tr className="bg-darkbluebg text-black">
                             <td className="border border-blue-600 pl-2 px-1 py-1">2</td>
@@ -292,6 +287,7 @@ export default function Home() {
                         <td className="border border-blue-600 pl-2">JUDUL Ciptaan #2</td>
                         <td className="border border-blue-600 pl-2">Deskripsi</td>
                         <td className="border border-blue-600 pl-2 text-lgtblue"><a href="#">Tampilkan</a></td>
+                        <td className="border border-blue-600 pl-2 text-red-600"><button onClick={handleDetailRejected}>Rejected</button></td>
                         </tr>
                         <tr className="bg-lgtbluebg text-black">
                             <td className="border border-blue-600 pl-2 px-1 py-1">3</td>
@@ -299,6 +295,7 @@ export default function Home() {
                         <td className="border border-blue-600 pl-2">JUDUL Ciptaan #3</td>
                         <td className="border border-blue-600 pl-2">Deskripsi</td>
                         <td className="border border-blue-600 pl-2 text-lgtblue"><a href="#">Tampilkan</a></td>
+                        <td className="border border-blue-600 pl-2 text-greenapr">Approved</td>
                         </tr>
                         <tr className="bg-darkbluebg text-black">
                             <td className="border border-blue-600 pl-2 px-1 py-1">4</td>
@@ -306,6 +303,7 @@ export default function Home() {
                         <td className="border border-blue-600 pl-2">JUDUL Ciptaan #4</td>
                         <td className="border border-blue-600 pl-2">Deskripsi</td>
                         <td className="border border-blue-600 pl-2 text-lgtblue"><a href="#">Tampilkan</a></td>
+                        <td className="border border-blue-600 pl-2 text-greenapr">Approved</td>
                         </tr>
                         <tr className="bg-lgtbluebg text-black">
                             <td className="border border-blue-600 pl-2 px-1 py-1">5</td>
@@ -313,6 +311,7 @@ export default function Home() {
                         <td className="border border-blue-600 pl-2">JUDUL Ciptaan #5</td>
                         <td className="border border-blue-600 pl-2">Deskripsi</td>
                         <td className="border border-blue-600 pl-2 text-lgtblue"><a href="#">Tampilkan</a></td>
+                        <td className="border border-blue-600 pl-2 text-greenapr">Approved</td>
                         </tr>
                         <tr className="bg-darkbluebg text-black">
                             <td className="border border-blue-600 pl-2 px-1 py-1">6</td>
@@ -320,6 +319,7 @@ export default function Home() {
                         <td className="border border-blue-600 pl-2">JUDUL Ciptaan #6</td>
                         <td className="border border-blue-600 pl-2">Deskripsi</td>
                         <td className="border border-blue-600 pl-2 text-lgtblue"><a href="#">Tampilkan</a></td>
+                        <td className="border border-blue-600 pl-2 text-red-600">Rejected</td>
                         </tr>
                         <tr className="bg-lgtbluebg text-black">
                             <td className="border border-blue-600 pl-2 px-1 py-1">7</td>
@@ -327,6 +327,7 @@ export default function Home() {
                         <td className="border border-blue-600 pl-2">JUDUL Ciptaan #7</td>
                         <td className="border border-blue-600 pl-2">Deskripsi</td>
                         <td className="border border-blue-600 pl-2 text-lgtblue"><a href="#">Tampilkan</a></td>
+                        <td className="border border-blue-600 pl-2 text-red-600">Rejected</td>
                         </tr>
                         <tr className="bg-darkbluebg text-black">
                             <td className="border border-blue-600 pl-2 px-1 py-1">8</td>
@@ -334,6 +335,7 @@ export default function Home() {
                         <td className="border border-blue-600 pl-2">JUDUL Ciptaan #8</td>
                         <td className="border border-blue-600 pl-2">Deskripsi</td>
                         <td className="border border-blue-600 pl-2 text-lgtblue"><a href="#">Tampilkan</a></td>
+                        <td className="border border-blue-600 pl-2 text-lgtblue"><button onClick={handleDetailPending}>Pending</button></td>
                         </tr>
                         <tr className="bg-lgtbluebg text-black">
                             <td className="border border-blue-600 pl-2 px-1 py-1">9</td>
@@ -341,6 +343,7 @@ export default function Home() {
                         <td className="border border-blue-600 pl-2">JUDUL Ciptaan #9</td>
                         <td className="border border-blue-600 pl-2">Deskripsi</td>
                         <td className="border border-blue-600 pl-2 text-lgtblue"><a href="#">Tampilkan</a></td>
+                        <td className="border border-blue-600 pl-2 text-greenapr">Approved</td>
                         </tr>
                         <tr className="bg-darkbluebg text-black">
                             <td className="border border-blue-600 pl-2 px-1 py-1">10</td>
@@ -348,12 +351,11 @@ export default function Home() {
                         <td className="border border-blue-600 pl-2">JUDUL Ciptaan #10</td>
                         <td className="border border-blue-600 pl-2">Deskripsi</td>
                         <td className="border border-blue-600 pl-2 text-lgtblue"><a href="#">Tampilkan</a></td>
+                        <td className="border border-blue-600 pl-2 text-greenapr">Approved</td>
                         </tr>
                     </tbody>
                 </table>    
             </div>
-            
-
 
             <div className="grid grid-cols-6 gap-4">
                 <div className="col-start-1 font-krona-one text-black pl-10">

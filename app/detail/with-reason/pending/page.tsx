@@ -1,4 +1,5 @@
 "use client";
+import Navbar from "@/app/components/navbar";
 import NavbarLoggedin from "@/app/components/navbar-logged-in";
 import { useRouter } from "next/navigation";
 
@@ -21,7 +22,7 @@ export default function Home() {
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin=""/>
       <link href="https://fonts.googleapis.com/css2?family=Krona+One&family=Luckiest+Guy&display=swap" rel="stylesheet"/>
       
-      <NavbarLoggedin />
+      <Navbar />
 
       <div className="flex flex-row place-content-center">
 

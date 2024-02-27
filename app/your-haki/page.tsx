@@ -312,6 +312,7 @@ export default function Home() {
                         <th className="border border-blue-600 pl-2 bg-darkblue">Judul</th>
                         <th className="border border-blue-600 pl-2 bg-darkblue">Deskripsi</th>
                         <th className="border border-blue-600 pl-2 bg-darkblue">Barcode</th>
+                        <th className="border border-blue-600 pl-2 bg-darkblue">Status</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -323,6 +324,14 @@ export default function Home() {
                                 <td className="border border-blue-600 pl-2">{item.judul_ciptaan}</td>
                                 <td className="border border-blue-600 pl-2">{item.deskripsi_ciptaan}</td>
                                 <td className="border border-blue-600 pl-2 text-lgtblue"><a href="#">Tampilkan</a></td>
+                                {item.status=="pending"?
+                                    <td className="border border-blue-600 pl-2 text-lgtblue"><a onClick={() => router.push('/detail/with-reason/pending')}>{item.status}</a></td>
+                                    :
+                                item.status=="approved"?
+                                    <td className="border border-blue-600 pl-2 text-greenapr"><a onClick={() => router.push('/detail/without-reason/approved')}>{item.status}</a></td>
+                                    :
+                                    <td className="border border-blue-600 pl-2 text-reds"><a onClick={() => router.push('/detail/with-reason/rejected')}>{item.status}</a></td>
+                                }
                             </tr>
                         ))
                     ) : (

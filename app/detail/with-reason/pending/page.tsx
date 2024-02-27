@@ -1,6 +1,5 @@
 "use client";
 import Navbar from "@/app/components/navbar";
-import NavbarLoggedin from "@/app/components/navbar-logged-in";
 import { useRouter } from "next/navigation";
 
 export default function Home() {

@@ -17,7 +17,7 @@ model user {
 
 model haki {
   id                Int    @id @default(autoincrement())
-  uid               Int    @unique
+  uid               Int
   jenis_ciptaan     String @db.VarChar(255)
   judul_ciptaan     String @db.VarChar(255)
   tanggal_ciptaan   String @db.VarChar(255)

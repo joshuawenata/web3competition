@@ -61,17 +61,19 @@ export default function Home() {
     }
 
     const [filterEnabled, setFilter] = useState(false);
-    const [text, setText] = useState({jenis : '', negara: '', kota: ''});
+    const [text, setText] = useState({jenis : '', negara: '', kota: '', tanggal: ''});
+    let filterCount = 0;
+    let itemsPerPage = 10;
 
     const handleFilter = () => {
         if (filterEnabled) {
             setFilter(false)
-            setText({jenis : '', negara : '', kota: ''})
+            setText({jenis : '', negara : '', kota: '', tanggal: ''})
             
         }
         else {
             setFilter(true)
-            setText({jenis : 'jenis ciptaan', negara : 'negara', kota: 'kota'})
+            setText({jenis : 'jenis ciptaan', negara : 'negara', kota: 'kota', tanggal: ''})
         }
     };
     
@@ -300,9 +302,10 @@ export default function Home() {
                         id="date" 
                         className="bg-gray-50 border font-krona-one text-base h-12 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-5 p-2.5  dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500" 
                         placeholder="Tanggal Ciptaan Diumumkan"
-                        style={{ width: "16rem" }} 
-                        required />
+                        style={{ width: "16rem" }}
+                        onChange={(e) => setText({...text, tanggal : e.target.value})}  />
                     </div>
+
                 </div>
             ) : (null)}
         <div className="flex flex-row place-content-center pl-10 pr-10 pt-5 pb-5">
@@ -319,14 +322,20 @@ export default function Home() {
                 </thead>
                 <tbody>
                     {items.length > 0 ? (
+
                         items.map((item, index) => (
-                            <tr key={index} className="bg-lgtbluebg text-black">
-                                <td className="border border-blue-600 pl-2 px-1 py-1">{index + 1}</td>
+                            ((!filterEnabled) || (
+                             (text.jenis == 'jenis ciptaan' || item.jenis_ciptaan == text.jenis) && 
+                             (text.negara == 'negara' || item.negara_ciptaan == text.negara) &&
+                             (text.kota == 'kota' || item.kota_ciptaan == text.kota) &&
+                             (text.tanggal == '' || item.tanggal_ciptaan == text.tanggal))) ? (
+                            
+                            <tr key={index} className={(filterCount % 2 == 0 ? ("bg-lgtbluebg text-black") : ("bg-darkbluebg text-black"))}>
+                                <td className="border border-blue-600 pl-2 px-1 py-1">{++filterCount}</td>
                                 <td className="border border-blue-600 pl-2">{item.id}</td>
                                 <td className="border border-blue-600 pl-2">{item.judul_ciptaan}</td>
                                 <td className="border border-blue-600 pl-2">{item.deskripsi_ciptaan}</td>
                                 <td className="border border-blue-600 pl-2 text-lgtblue"><a href="#">Tampilkan</a></td>
-                                
                                 {item.status=="pending"?
                                         <td className="border border-blue-600 pl-2 text-lgtblue">
                                             <Link href={{ pathname: '/detail/with-reason/pending' }} onClick={() => {localStorage.setItem('itemid',String(item.id))}}>
@@ -347,20 +356,22 @@ export default function Home() {
                                             </Link>
                                         </td>
                                 }
-                            </tr>
-                        ))
-                    ) : (
+                            </tr>) : (null)))) : (
+                        <tr>
+                            <td className="border text-lgtblue border-blue-600 pl-2 px-1 py-1 text-center" colSpan={6}>No items</td>
+                        </tr>)}
+                    {(!filterCount ? (
                         <tr>
                             <td className="border text-lgtblue border-blue-600 pl-2 px-1 py-1 text-center" colSpan={6}>No items</td>
                         </tr>
-                    )}
+                    ) : (null))}
                 </tbody>
             </table>    
         </div>
-
+        
         <div className="grid grid-cols-6 gap-4">
             <div className="col-start-1 font-krona-one text-black pl-10">
-                Halaman 1 dari 914
+                Halaman 1 dari {Math.floor(filterCount / itemsPerPage) + 1}
             </div>
             <div className="col-end-7 col-span-2">
                 <div className="flex flex-row-reverse pr-10">
@@ -378,7 +389,7 @@ export default function Home() {
             </div>
         </div>
         </div>
-
+    {filterCount = 0}
     </main>
     );
 }

@@ -95,9 +95,7 @@ app.post('/login-account', async (req, res) => {
 });
 
 app.get('/api/session', (req, res) => {
-  console.log(req.session.uid)
   try {
-    // Assuming you have the user information stored in req.session.user
     const uid = req.session.uid;
     res.status(200).json({ uid: uid });
   } catch (error) {
@@ -105,6 +103,26 @@ app.get('/api/session', (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+
+app.get('/fetch-see-haki', async (req, res) => {
+  const item = await prisma.haki.findMany();
+  res.status(201).json({ item: item })
+})
+
+app.get('/fetch-your-haki', async (req, res) => {
+  try {
+    const uid = req.session.uid;
+    const item = await prisma.haki.findMany({
+      where: {
+        uid: uid,
+      },
+    });
+    res.status(201).json({ item: item })
+  } catch (error) {
+    console.error('Error fetching session:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+})
 
 app.listen(port, () => {
   console.log(`Server run on port ${port}`)

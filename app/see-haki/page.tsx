@@ -1,15 +1,54 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import Navbar from "../components/navbar";
 import NavbarLoggedin from "../components/navbar-logged-in";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+interface Haki {
+    id: number;
+    uid: number;
+    jenis_ciptaan: string
+    judul_ciptaan: string
+    tanggal_ciptaan: string
+    negara_ciptaan: string
+    kota_ciptaan: string
+    deskripsi_ciptaan: string
+    status: string   
+}
 
 export default function Home() {
     const router = useRouter();
 
+    const [items, setItems] = useState<Haki[]>([]);
+    
+    const fetchHaki = async () => {
+        try {
+            const response = await fetch("http://localhost:4000/fetch-see-haki", {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                credentials: 'include',
+            });
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            const {item} = await response.json();
+            setItems(item);
+            console.log(item)
+        } catch (error: any) {
+            console.error('Error fetching Haki:', error.message);
+        }
+    }
+
+    useEffect(() => {
+        fetchHaki()
+    },[])
+    
     const handleDetailRejected = () => {
-      router.push('/detail/with-reason/rejected')
+        router.push('/detail/with-reason/rejected')
     }  
     const handleDetailPending = () => {
       router.push('/detail/with-reason/pending')
@@ -21,6 +60,7 @@ export default function Home() {
     const handleChange = () => {
 
     }
+
     const [filterEnabled, setFilter] = useState(false);
     const [text, setText] = useState({jenis : '', negara: '', kota: ''});
 
@@ -34,9 +74,7 @@ export default function Home() {
             setFilter(true)
             setText({jenis : 'jenis ciptaan', negara : 'negara', kota: 'kota'})
         }
-    };
-
-    
+    };    
 
     return(
     <main className="bg-background min-h-screen w-screen">
@@ -271,90 +309,33 @@ export default function Home() {
                 <table className="table w-screen font-krona-one">
                     <thead>
                         <tr className="py-10">
-                        <th className="border border-blue-600 pl-2 bg-darkblue px-1">No</th>
-                        <th className="border border-blue-600 pl-2 bg-darkblue px">Item ID</th>
-                        <th className="border border-blue-600 pl-2 bg-darkblue">Judul</th>
-                        <th className="border border-blue-600 pl-2 bg-darkblue">Deskripsi</th>
-                        <th className="border border-blue-600 pl-2 bg-darkblue">Barcode</th>
+                            <th className="border border-blue-600 pl-2 bg-darkblue px-1">No</th>
+                            <th className="border border-blue-600 pl-2 bg-darkblue">Item ID</th>
+                            <th className="border border-blue-600 pl-2 bg-darkblue">Judul</th>
+                            <th className="border border-blue-600 pl-2 bg-darkblue">Deskripsi</th>
+                            <th className="border border-blue-600 pl-2 bg-darkblue">Barcode</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr className="bg-lgtbluebg text-black">
-                        <td className="border border-blue-600 pl-2 px-1 py-1">1</td>
-                        <td className="border border-blue-600 pl-2">0xHA7235921</td>
-                        <td className="border border-blue-600 pl-2">JUDUL Ciptaan #1</td>
-                        <td className="border border-blue-600 pl-2">Deskripsi</td>
-                        <td className="border border-blue-600 pl-2 text-lgtblue"><a href="#">Tampilkan</a></td>
-                        </tr>
-                        <tr className="bg-darkbluebg text-black">
-                            <td className="border border-blue-600 pl-2 px-1 py-1">2</td>
-                        <td className="border border-blue-600 pl-2">0xPL1836529</td>
-                        <td className="border border-blue-600 pl-2">JUDUL Ciptaan #2</td>
-                        <td className="border border-blue-600 pl-2">Deskripsi</td>
-                        <td className="border border-blue-600 pl-2 text-lgtblue"><a href="#">Tampilkan</a></td>
-                        </tr>
-                        <tr className="bg-lgtbluebg text-black">
-                            <td className="border border-blue-600 pl-2 px-1 py-1">3</td>
-                        <td className="border border-blue-600 pl-2">0xMK5998716</td>
-                        <td className="border border-blue-600 pl-2">JUDUL Ciptaan #3</td>
-                        <td className="border border-blue-600 pl-2">Deskripsi</td>
-                        <td className="border border-blue-600 pl-2 text-lgtblue"><a href="#">Tampilkan</a></td>
-                        </tr>
-                        <tr className="bg-darkbluebg text-black">
-                            <td className="border border-blue-600 pl-2 px-1 py-1">4</td>
-                        <td className="border border-blue-600 pl-2">0xFH3935275</td>
-                        <td className="border border-blue-600 pl-2">JUDUL Ciptaan #4</td>
-                        <td className="border border-blue-600 pl-2">Deskripsi</td>
-                        <td className="border border-blue-600 pl-2 text-lgtblue"><a href="#">Tampilkan</a></td>
-                        </tr>
-                        <tr className="bg-lgtbluebg text-black">
-                            <td className="border border-blue-600 pl-2 px-1 py-1">5</td>
-                        <td className="border border-blue-600 pl-2">0xLK8255649</td>
-                        <td className="border border-blue-600 pl-2">JUDUL Ciptaan #5</td>
-                        <td className="border border-blue-600 pl-2">Deskripsi</td>
-                        <td className="border border-blue-600 pl-2 text-lgtblue"><a href="#">Tampilkan</a></td>
-                        </tr>
-                        <tr className="bg-darkbluebg text-black">
-                            <td className="border border-blue-600 pl-2 px-1 py-1">6</td>
-                        <td className="border border-blue-600 pl-2">0xKU7624108</td>
-                        <td className="border border-blue-600 pl-2">JUDUL Ciptaan #6</td>
-                        <td className="border border-blue-600 pl-2">Deskripsi</td>
-                        <td className="border border-blue-600 pl-2 text-lgtblue"><a href="#">Tampilkan</a></td>
-                        </tr>
-                        <tr className="bg-lgtbluebg text-black">
-                            <td className="border border-blue-600 pl-2 px-1 py-1">7</td>
-                        <td className="border border-blue-600 pl-2">0xUY8172562</td>
-                        <td className="border border-blue-600 pl-2">JUDUL Ciptaan #7</td>
-                        <td className="border border-blue-600 pl-2">Deskripsi</td>
-                        <td className="border border-blue-600 pl-2 text-lgtblue"><a href="#">Tampilkan</a></td>
-                        </tr>
-                        <tr className="bg-darkbluebg text-black">
-                            <td className="border border-blue-600 pl-2 px-1 py-1">8</td>
-                        <td className="border border-blue-600 pl-2">0xMB9125420</td>
-                        <td className="border border-blue-600 pl-2">JUDUL Ciptaan #8</td>
-                        <td className="border border-blue-600 pl-2">Deskripsi</td>
-                        <td className="border border-blue-600 pl-2 text-lgtblue"><a href="#">Tampilkan</a></td>
-                        </tr>
-                        <tr className="bg-lgtbluebg text-black">
-                            <td className="border border-blue-600 pl-2 px-1 py-1">9</td>
-                        <td className="border border-blue-600 pl-2">0xGQ2012393</td>
-                        <td className="border border-blue-600 pl-2">JUDUL Ciptaan #9</td>
-                        <td className="border border-blue-600 pl-2">Deskripsi</td>
-                        <td className="border border-blue-600 pl-2 text-lgtblue"><a href="#">Tampilkan</a></td>
-                        </tr>
-                        <tr className="bg-darkbluebg text-black">
-                            <td className="border border-blue-600 pl-2 px-1 py-1">10</td>
-                        <td className="border border-blue-600 pl-2">0xAK4712073</td>
-                        <td className="border border-blue-600 pl-2">JUDUL Ciptaan #10</td>
-                        <td className="border border-blue-600 pl-2">Deskripsi</td>
-                        <td className="border border-blue-600 pl-2 text-lgtblue"><a href="#">Tampilkan</a></td>
-                        </tr>
+                        {items.length > 0 ? (
+                            items.map((item, index) => (
+                                <tr key={index} className="bg-lgtbluebg text-black">
+                                    <td className="border border-blue-600 pl-2 px-1 py-1">{index + 1}</td>
+                                    <td className="border border-blue-600 pl-2">{item.id}</td>
+                                    <td className="border border-blue-600 pl-2">{item.judul_ciptaan}</td>
+                                    <td className="border border-blue-600 pl-2">{item.deskripsi_ciptaan}</td>
+                                    <td className="border border-blue-600 pl-2 text-lgtblue"><a href="#">Tampilkan</a></td>
+                                </tr>
+                            ))
+                        ) : (
+                            <tr>
+                                <td className="border text-lgtblue border-blue-600 pl-2 px-1 py-1 text-center" colSpan={5}>No items</td>
+                            </tr>
+                        )}
                     </tbody>
-                </table>    
+                </table>
             </div>
             
-
-
             <div className="grid grid-cols-6 gap-4">
                 <div className="col-start-1 font-krona-one text-black pl-10">
                     Halaman 1 dari 914

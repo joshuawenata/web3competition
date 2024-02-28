@@ -61,19 +61,19 @@ Follwing are the steps to deploy your application locally
    <br>
    `nodemon server.mjs`
     
-12. Run app locally
+11. Run app locally
 
    `npm run dev`
 
 Following are the steps to deploy your application in blockchain environment:
 
-To deploy run:
+1. To deploy run:
+    
+    `dfx start --clean --background`
+    
+    `bash scripts/deploy_frontend_canister.sh  local`
 
-`dfx start --clean --background`
-
-`bash scripts/deploy_frontend_canister.sh  local`
-
-To Stop Replica run:
-
-`dfx stop`
+2. To Stop Replica run:
+    
+    `dfx stop`
 

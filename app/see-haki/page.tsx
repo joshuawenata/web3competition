@@ -316,6 +316,7 @@ export default function Home() {
                             <th className="border border-blue-600 pl-2 bg-darkblue">Judul</th>
                             <th className="border border-blue-600 pl-2 bg-darkblue">Deskripsi</th>
                             <th className="border border-blue-600 pl-2 bg-darkblue">Barcode</th>
+                            <th className="border border-blue-600 pl-2 bg-darkblue">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -333,6 +334,9 @@ export default function Home() {
                                     <td className="border border-blue-600 pl-2">{item.judul_ciptaan}</td>
                                     <td className="border border-blue-600 pl-2">{item.deskripsi_ciptaan}</td>
                                     <td className="border border-blue-600 pl-2 text-lgtblue"><a href="#">Tampilkan</a></td>
+                                    <td className="flex border border-blue-600 text-white">
+                                        <button className="font-krona-one bg-blue-700 mx-2 my-1 px-2 py-2 rounded-xl w-full">BUY</button>
+                                    </td>
                                 </tr>) : (null)))) : (
                                 <tr>
                                     <td className="border text-lgtblue border-blue-600 pl-2 px-1 py-1 text-center" colSpan={6}>No items</td>

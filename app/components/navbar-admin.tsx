@@ -5,7 +5,7 @@ const NavbarAdmin = () => {
     const router = useRouter();
     
     const handleLogoClick = () => {
-        router.push('/see-haki')
+        router.push('/admin-page/approval')
     }
 
     const handleApproveHaki = () => {

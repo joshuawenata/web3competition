@@ -16,6 +16,10 @@ const NavbarLoggedin = () => {
         router.push('/your-haki')
     }
 
+    const handleInventory = () => {
+        router.push('/inventory')
+    }
+
     const handleHome = () => {
         router.push('/see-haki')
     }
@@ -38,7 +42,7 @@ const NavbarLoggedin = () => {
                 </svg>
             </button>
             
-            <button onClick={handleHome} className="pl-80 text-xl font-krona-one text-blues">
+            <button onClick={handleHome} className="pl-40 text-xl font-krona-one text-blues">
             Home
             </button>
             
@@ -46,9 +50,12 @@ const NavbarLoggedin = () => {
             Register HAKI
             </button>
             
-
             <button onClick={handleYourHaki} className="pl-20 text-xl font-krona-one text-blues">
             Your HAKI
+            </button>
+
+            <button onClick={handleInventory} className="pl-20 text-xl font-krona-one text-blues">
+            Inventory
             </button>
 
             <button onClick={handleLogout} className="pl-20 text-xl font-krona-one text-red-500">

@@ -35,7 +35,9 @@ export default function Home() {
   
         if (response.ok) {
           // Handle successful response
-          router.push('/admin-page/approval');
+          if(formData.email=="admin@admin.com"){
+            router.push('/admin-page/approval');
+          }
         } else {
           // Handle error response
           console.error('Error:', response.statusText);
@@ -63,11 +65,7 @@ export default function Home() {
 
       <div className="flex flex-row place-content-center">
 
-      
-
         <div className="flex justify-center" style={{marginTop:"2rem"}}>
-
-        
 
           <form onSubmit={handleSubmit}> 
           <div className="text-2xl font-krona-one pt-3 pb-5 text-darkblue">

@@ -20,6 +20,7 @@ export default function Home() {
     const router = useRouter();
 
     const [items, setItems] = useState<Haki[]>([]);
+    const [uid, setUid] = useState(0);
     
     const fetchHaki = async () => {
         try {
@@ -37,7 +38,27 @@ export default function Home() {
 
             const {item} = await response.json();
             setItems(item);
-            console.log(item)
+        } catch (error: any) {
+            console.error('Error fetching Haki:', error.message);
+        }
+    }
+
+    const fetchUid = async () => {
+        try {
+            const response = await fetch("http://localhost:4000/getUid", {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                credentials: 'include',
+            });
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            const {uid} = await response.json();
+            setUid(uid);
         } catch (error: any) {
             console.error('Error fetching Haki:', error.message);
         }
@@ -45,20 +66,27 @@ export default function Home() {
 
     useEffect(() => {
         fetchHaki()
+        fetchUid()
     },[])
-    
-    const handleDetailRejected = () => {
-        router.push('/detail/with-reason/rejected')
-    }  
-    const handleDetailPending = () => {
-      router.push('/detail/with-reason/pending')
-    }  
-    const handleDetailApproved = () => {
-      router.push('/detail/without-reason/approved')
-    }
 
-    const handleChange = () => {
-
+    const handleBuy = async (hid: number) => {
+        try {
+            const response = await fetch("http://localhost:4000/buy-haki", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                credentials: 'include',
+                body: JSON.stringify({uid: uid, hid: hid})
+            })
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            
+        } catch (error) {
+            
+        }
+        router.push('/payment')
     }
 
     const [filterEnabled, setFilter] = useState(false);
@@ -69,8 +97,7 @@ export default function Home() {
     const handleFilter = () => {
         if (filterEnabled) {
             setFilter(false)
-            setText({jenis : '', negara : '', kota: '', tanggal: ''})
-            
+            setText({jenis : '', negara : '', kota: '', tanggal: ''}) 
         }
         else {
             setFilter(true)
@@ -335,7 +362,7 @@ export default function Home() {
                                     <td className="border border-blue-600 pl-2">{item.deskripsi_ciptaan}</td>
                                     <td className="border border-blue-600 pl-2 text-lgtblue"><a href="#">Tampilkan</a></td>
                                     <td className="flex border border-blue-600 text-white">
-                                        <button className="font-krona-one bg-blue-700 mx-2 my-1 px-2 py-2 rounded-xl w-full">BUY</button>
+                                        <button onClick={() => handleBuy(item.id)} className="font-krona-one bg-blue-700 mx-2 my-1 px-2 py-2 rounded-xl w-full">BUY</button>
                                     </td>
                                 </tr>) : (null)))) : (
                                 <tr>

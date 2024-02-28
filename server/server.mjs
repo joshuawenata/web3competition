@@ -68,6 +68,12 @@ app.post('/register-haki', async (req, res) => {
   res.status(201).send(newHaki);
 })
 
+app.post('/buy-haki', async (req, res) => {
+  const data = req.body;
+  const newInventory = await prisma.inventory.create({data})
+  res.status(201).send(newInventory);
+})
+
 app.post('/login-account', async (req, res) => {
   const data = req.body;
   const user = await prisma.user.findUnique({
@@ -119,9 +125,49 @@ app.get('/get-username', async (req, res) => {
   }
 });
 
+app.get('/getUid', async (req, res) => {
+  try {
+    const uid = req.session.uid
+    console.log(uid)
+    res.status(200).json({ uid: uid });
+  } catch (error) {
+    console.error('Error fetching session:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
 app.get('/fetch-see-haki', async (req, res) => {
   const item = await prisma.haki.findMany();
   res.status(201).json({ item: item })
+})
+
+app.get('/fetch-inventory', async (req, res) => {
+  const uid = req.session.uid;
+  const item = await prisma.inventory.findMany({
+    where: {
+      uid: uid,
+    },
+  });
+
+  const haki = [];
+
+  // Assuming item is an array
+  await Promise.all(item.map(async (element) => {
+    try {
+      const h = await prisma.haki.findUnique({
+        where: {
+          id: element.hid
+        }
+      });
+      haki.push(h);
+    } catch (error) {
+      console.error(`Error fetching haki for element with hid ${element.hid}:`, error);
+      // Handle the error as needed
+    }
+  }));
+
+  // Now, haki array contains the results of all asynchronous operations
+  res.status(201).json({ item: haki })
 })
 
 app.get('/fetch-your-haki', async (req, res) => {

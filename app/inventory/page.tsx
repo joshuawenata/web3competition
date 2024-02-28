@@ -17,13 +17,11 @@ interface Haki {
 }
 
 export default function Home() {
-    const router = useRouter();
-
     const [items, setItems] = useState<Haki[]>([]);
-    
+
     const fetchHaki = async () => {
         try {
-            const response = await fetch("http://localhost:4000/fetch-see-haki", {
+            const response = await fetch("http://localhost:4000/fetch-inventory", {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -37,7 +35,6 @@ export default function Home() {
 
             const {item} = await response.json();
             setItems(item);
-            console.log(item)
         } catch (error: any) {
             console.error('Error fetching Haki:', error.message);
         }
@@ -46,20 +43,6 @@ export default function Home() {
     useEffect(() => {
         fetchHaki()
     },[])
-    
-    const handleDetailRejected = () => {
-        router.push('/detail/with-reason/rejected')
-    }  
-    const handleDetailPending = () => {
-      router.push('/detail/with-reason/pending')
-    }  
-    const handleDetailApproved = () => {
-      router.push('/detail/without-reason/approved')
-    }
-
-    const handleChange = () => {
-
-    }
 
     const [filterEnabled, setFilter] = useState(false);
     const [text, setText] = useState({jenis : '', negara: '', kota: '', tanggal: ''});

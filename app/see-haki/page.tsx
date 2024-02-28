@@ -327,7 +327,7 @@ export default function Home() {
                                  (text.kota == 'kota' || item.kota_ciptaan == text.kota) &&
                                  (text.tanggal == '' || item.tanggal_ciptaan == text.tanggal))) ? (
 
-                                <tr key={index} className={(index % 2 == 0 ? ("bg-lgtbluebg text-black") : ("bg-darkbluebg text-black"))}>
+                                <tr key={index} className={(filterCount % 2 == 0 ? ("bg-lgtbluebg text-black") : ("bg-darkbluebg text-black"))}>
                                     <td className="border border-blue-600 pl-2 px-1 py-1">{++filterCount}</td>
                                     <td className="border border-blue-600 pl-2">{item.id}</td>
                                     <td className="border border-blue-600 pl-2">{item.judul_ciptaan}</td>

@@ -35,7 +35,11 @@ export default function Home() {
         });
   
         if (response.ok) {
-          router.push('/your-haki');
+          if(formData.email=="admin@admin.com"){
+            router.push('/admin-page/approval');
+          }else{
+            router.push('/see-haki');
+          }
         } else {
           // Handle error response
           console.error('Error:', response.statusText);

@@ -360,7 +360,7 @@ export default function Home() {
                         <tr>
                             <td className="border text-lgtblue border-blue-600 pl-2 px-1 py-1 text-center" colSpan={6}>No items</td>
                         </tr>)}
-                    {(!filterCount ? (
+                    {((!filterCount && items.length > 0) ? (
                         <tr>
                             <td className="border text-lgtblue border-blue-600 pl-2 px-1 py-1 text-center" colSpan={6}>No items</td>
                         </tr>

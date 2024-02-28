@@ -67,4 +67,13 @@ Follwing are the steps to deploy your application locally
 
 Following are the steps to deploy your application in blockchain environment:
 
+To deploy run:
+
+`dfx start --clean --background`
+
+`bash scripts/deploy_frontend_canister.sh  local`
+
+To Stop Replica run:
+
+`dfx stop`
 

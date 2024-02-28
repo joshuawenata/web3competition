@@ -1,4 +1,4 @@
-# IC Dapp Template
+# HAKI 
 
 ## Prerequisites
 

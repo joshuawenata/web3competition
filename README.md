@@ -6,42 +6,65 @@
 - Nodejs >= 18.16.0
 - yarn
 - jq (Command line based JSON processor).
-- To install jq run:
-
-    `sudo apt update && sudo apt install -y jq`
-
+    
 Follwing are the steps to deploy your application locally
 
 1. Install wsl:
 
     `wsl --install`
 
-2. Install dfx:
+2. Install jq
+
+    `sudo apt update && sudo apt install -y jq`
+   
+3. Install dfx:
 
    `DFX_VERSION=0.15.0 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"`
 
-3. Add dfx to your path
+4. Add dfx to your path
 
    `echo 'export PATH="$PATH:$HOME/bin"' >> "$HOME/.bashrc"`
 
-4. Install nvm
+5. Install nvm
 
    ```curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash```
    <br>
    `nvm use 18`
 
-5. Install dependencies:
+6. Install dependencies:
 
-    `yarn && cd azle/ && yarn && cd ..`
+    `npm i yarn`
+   <br>
+    `yarn`
+   <br>
+    `cd server`
+   <br>
+   `yarn`
+   <br>
+   `cd ..`
 
-6. Run below commands:
+7. Create database
 
-   ```dfx start --clean --background```
+    `yarn prisma migrate dev`
+    <br>
+    `yarn prisma db pull`
+    <br>
+    `yarn prisma studio`
 
-   `bash scripts/deploy_frontend_canister.sh  local`
+9. Run seeder for admin account
 
-- To Stop Replica run:
+   `node seeder.js`
 
-   ```dfx stop```
+10. Run server
 
-   ![Image](public/image.png)
+   `cd server`
+   <br>
+   `nodemon server.mjs`
+    
+12. Run app locally
+
+   `npm run dev`
+
+Following are the steps to deploy your application in blockchain environment:
+
+

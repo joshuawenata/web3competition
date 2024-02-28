@@ -53,17 +53,17 @@ Follwing are the steps to deploy your application locally
 
 9. Run seeder for admin account
 
-   `node seeder.js`
+    `node seeder.js`
 
 10. Run server
 
-   `cd server`
-   <br>
-   `nodemon server.mjs`
+    `cd server`
+    <br>
+    `nodemon server.mjs`
     
 11. Run app locally
 
-   `npm run dev`
+    `npm run dev`
 
 Following are the steps to deploy your application in blockchain environment:
 

@@ -31,3 +31,9 @@ model barcode {
   id  Int @id @default(autoincrement())
   hid Int @unique
 }
+
+model inventory {
+  id  Int @id @default(autoincrement())
+  uid Int @unique
+  hid Int
+}

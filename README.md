@@ -51,17 +51,17 @@ Follwing are the steps to deploy your application locally
     <br>
     `yarn prisma studio`
 
-9. Run seeder for admin account
+8. Run seeder for admin account
 
     `node seeder.js`
 
-10. Run server
+9. Run server
 
     `cd server`
     <br>
     `nodemon server.mjs`
     
-11. Run app locally
+10. Run app locally
 
     `npm run dev`
 

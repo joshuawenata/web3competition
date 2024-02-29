@@ -20,6 +20,7 @@ export default function Home() {
     const router = useRouter();
 
     const [items, setItems] = useState<Haki[]>([]);
+    const [filteredItems, setFilteredItems] = useState<Haki[]>([]);
     const [uid, setUid] = useState(0);
     
     const fetchHaki = async () => {
@@ -38,6 +39,7 @@ export default function Home() {
 
             const {item} = await response.json();
             setItems(item);
+            setFilteredItems(item);
         } catch (error: any) {
             console.error('Error fetching Haki:', error.message);
         }
@@ -90,20 +92,49 @@ export default function Home() {
     }
 
     const [filterEnabled, setFilter] = useState(false);
-    const [text, setText] = useState({jenis : '', negara: '', kota: '', tanggal: ''});
-    let filterCount = 0;
+    const [page, setPage] = useState(1);
+    const [text, setText] = useState({jenis : 'jenis ciptaan', negara : 'negara', kota: 'kota', tanggal: ''});
     let itemsPerPage = 10;
+    let number = 0;
 
     const handleFilter = () => {
-        if (filterEnabled) {
-            setFilter(false)
-            setText({jenis : '', negara : '', kota: '', tanggal: ''}) 
-        }
-        else {
+        if (!filterEnabled) {
             setFilter(true)
             setText({jenis : 'jenis ciptaan', negara : 'negara', kota: 'kota', tanggal: ''})
         }
-    };   
+        else {
+            setFilter(false)
+            setText({jenis : 'jenis ciptaan', negara : 'negara', kota: 'kota', tanggal: ''})
+        }
+    };
+
+    const handleNext = () => {
+        if (page < Math.floor(filteredItems.length / itemsPerPage) + 1) {
+            setPage(page+1)
+        }
+    }
+
+    const handlePrev = () => {
+        if (page > 1) {
+            setPage(page-1)
+        }
+    }
+
+    // filter
+    useEffect(() => {
+        setFilteredItems([]);
+        if (items.length > 0) {
+            items.forEach((item) => {
+                if ((!filterEnabled) || 
+                    ((text.jenis === 'jenis ciptaan' || item.jenis_ciptaan === text.jenis) &&
+                    (text.negara === 'negara' || item.negara_ciptaan === text.negara) &&
+                    (text.kota === 'kota' || item.kota_ciptaan === text.kota) &&
+                    (text.tanggal === '' || item.tanggal_ciptaan === text.tanggal))) {
+                    setFilteredItems(prevFilteredItems => [...prevFilteredItems, item]);
+                }
+            });
+        }
+    }, [text]);
 
     return(
     <main className="bg-background min-h-screen w-screen">
@@ -347,16 +378,10 @@ export default function Home() {
                         </tr>
                     </thead>
                     <tbody>
-                        {items.length > 0 ? (
-                            items.map((item, index) => (
-                                ((!filterEnabled) || (
-                                 (text.jenis == 'jenis ciptaan' || item.jenis_ciptaan == text.jenis) && 
-                                 (text.negara == 'negara' || item.negara_ciptaan == text.negara) &&
-                                 (text.kota == 'kota' || item.kota_ciptaan == text.kota) &&
-                                 (text.tanggal == '' || item.tanggal_ciptaan == text.tanggal))) ? (
-
-                                <tr key={index} className={(filterCount % 2 == 0 ? ("bg-lgtbluebg text-black") : ("bg-darkbluebg text-black"))}>
-                                    <td className="border border-blue-600 pl-2 px-1 py-1">{++filterCount}</td>
+                    {filteredItems.length > 0 ? (
+                        filteredItems.map((item, index) => ((Math.floor(index / itemsPerPage) + 1 == page) ? (
+                                <tr key={index} className={(number % 2 == 0 ? ("bg-lgtbluebg text-black") : ("bg-darkbluebg text-black"))}>
+                                    <td className="border border-blue-600 pl-2 px-1 py-1">{(++number)+(page-1)*10}</td>
                                     <td className="border border-blue-600 pl-2">{item.id}</td>
                                     <td className="border border-blue-600 pl-2">{item.judul_ciptaan}</td>
                                     <td className="border border-blue-600 pl-2">{item.deskripsi_ciptaan}</td>
@@ -368,36 +393,30 @@ export default function Home() {
                                 <tr>
                                     <td className="border text-lgtblue border-blue-600 pl-2 px-1 py-1 text-center" colSpan={6}>No items</td>
                                 </tr>)}
-                            {((!filterCount && items.length > 0) ? (
-                                <tr>
-                                    <td className="border text-lgtblue border-blue-600 pl-2 px-1 py-1 text-center" colSpan={6}>No items</td>
-                                </tr>
-                            ) : (null))}
                     </tbody>
                 </table>
             </div>
             
             <div className="grid grid-cols-6 gap-4">
                 <div className="col-start-1 font-krona-one text-black pl-10">
-                    Halaman 1 dari {Math.floor(filterCount / itemsPerPage) + 1}
+                    Halaman {page} dari {Math.floor(filteredItems.length / itemsPerPage) + 1}
                 </div>
-                <div className="col-end-7 col-span-2">
-                    <div className="flex flex-row-reverse pr-10">
-                    <div className="pl-1">
-                        <button className="text-xl font-krona-one bg-darkblue pl-5 pr-5 pt-2 pb-2 rounded-xl">
-                            &gt;
-                        </button>
-                    </div>
-                    <div className="pl-1 pr-1">
-                        <button className="text-xl font-krona-one bg-darkblue pl-5 pr-5 pt-2 pb-2 rounded-xl">
-                            &lt;
-                        </button>
-                    </div>
+            <div className="col-end-7 col-span-2">
+                <div className="flex flex-row-reverse pr-10">
+                <div className="pl-1">
+                    <button onClick={handleNext} className="text-xl font-krona-one bg-darkblue pl-5 pr-5 pt-2 pb-2 rounded-xl">
+                        &gt;
+                    </button>
                 </div>
+                <div className="pl-1 pr-1">
+                    <button onClick={handlePrev} className="text-xl font-krona-one bg-darkblue pl-5 pr-5 pt-2 pb-2 rounded-xl">
+                        &lt;
+                    </button>
                 </div>
             </div>
-        </div>    
-    {filterCount = 0}
+            </div>
+        </div>
+        </div>
     </main>
     );
 }

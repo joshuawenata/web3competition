@@ -44,8 +44,11 @@ export default function Home() {
 
         <div className="ml-20">
 
-          <div className="flex justify-center mt-28 flex-col">
+          <div className="flex justify-center mt-20 flex-col">
             <div className="text-xl font-krona-one text-bluesk">
+              Payment Outstanding: Rp 100.000,00
+            </div>
+            <div className="text-xl font-krona-one text-bluesk mt-10">
               PLEASE FINISH THE
             </div>
             <div className="text-xl font-krona-one text-bluesk">

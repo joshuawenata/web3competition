@@ -1,6 +1,5 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import NavbarLoggedin from "../components/navbar-logged-in";
 import { useEffect, useState } from "react";
 

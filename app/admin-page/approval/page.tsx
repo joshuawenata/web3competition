@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import NavbarAdmin from "@/app/components/navbar-admin";
 import { useEffect, useState } from "react";
+import Popup from "reactjs-popup";
 
 interface Haki {
     id: number;
@@ -72,6 +73,7 @@ export default function Home() {
         } catch (error) {
             console.log(error)
         }
+        window.location.reload();
     }
 
     async function handleReject(itemid: number) {
@@ -87,6 +89,7 @@ export default function Home() {
         } catch (error) {
             console.log(error)
         }
+        window.location.reload();
     }
 
     async function handleCancel(itemid: number) {
@@ -102,6 +105,7 @@ export default function Home() {
         } catch (error) {
             console.log(error)
         }
+        window.location.reload();
     }
 
     return(
@@ -353,8 +357,48 @@ export default function Home() {
                                 <td className="border border-blue-600 pl-2">{item.status}</td>
                                 {item.status=="pending"?
                                     <td className="flex border border-blue-600 text-white">
-                                        <button onClick={() => {handleApprove(item.id)}} className="font-krona-one bg-green-700 mx-2 my-1 px-2 py-2 rounded-xl w-full">APPROVE</button>
-                                        <button onClick={() => {handleReject(item.id)}} className="font-krona-one bg-red-600 mx-2 my-1 px-2 py-2 rounded-xl w-full">REJECT</button>
+                                        <Popup trigger=
+                                            {<button className="font-krona-one bg-green-700 mx-2 my-1 px-2 py-2 rounded-xl w-full">APPROVE</button>} 
+                                            modal nested>
+                                            {
+                                                    <div className='modal'>
+                                                        
+                                                        <div className="bg-darkbluebg px-5 py-5 rounded-xl" style={{width:"30rem", height:"9rem", opacity:"85%"}}>
+                                                            <div className="font-krona-one text-darkblue text-xl mb-5">Approval Confirmation</div>
+                                                            <div className="flex">
+                                                                <button onClick={() => {window.location.reload()}} className="font-krona-one bg-gray-500 mr-4 px-2 py-2 rounded-xl w-full" style={{height:"3rem"}}>CANCEL</button>
+                                                                <button onClick={() => {handleApprove(item.id)}} className="font-krona-one bg-green-700 px-2 py-2 rounded-xl w-full" style={{height:"3rem"}}>APPROVE</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                            }
+                                        </Popup>
+
+                                        <Popup trigger=
+                                            {<button className="font-krona-one bg-red-600 mx-2 my-1 px-2 py-2 rounded-xl w-full">REJECT</button>} 
+                                            
+                                            modal nested>
+                                            {
+                                                    <div className='modal'>
+                                                        
+                                                        <div className="bg-darkbluebg px-5 py-5 rounded-xl" style={{width:"30rem", height:"14rem", opacity:"85%"}}>
+                                                            <div className="font-krona-one text-darkblue text-xl mb-5">Reason :</div>
+                                                            <input 
+                                                                type="text" 
+                                                                id="nama_lengkap" 
+                                                                className="bg-gray-50 border font-krona-one text-base h-14 border-gray-300 mb-5 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-5 p-2.5  dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+                                                                placeholder="Input reason"
+                                                                required />
+                                                            <div className="flex">
+                                                                <button onClick={() => {window.location.reload()}} className="font-krona-one bg-gray-500 mr-4 px-2 py-2 rounded-xl w-full" style={{height:"3rem"}}>CANCEL</button>
+                                                                <button onClick={() => {handleReject(item.id)}} className="font-krona-one bg-red-600 px-2 py-2 rounded-xl w-full" style={{height:"3rem"}}>REJECT</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                            }
+                                            
+                                        </Popup>
+                                        
                                     </td>
                                 :
                                     <td className="flex border border-blue-600 text-white">

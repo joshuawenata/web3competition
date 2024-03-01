@@ -185,6 +185,45 @@ app.get('/fetch-your-haki', async (req, res) => {
   }
 })
 
+app.post('/change-status/approve', async (req, res) => {
+  const itemid = req.body.itemid;
+  await prisma.haki.update({
+    where: {
+      id: itemid,
+    },
+    data:{
+      status: "approved"
+    }
+  });
+  res.send("payment approved")
+})
+
+app.post('/change-status/reject', async (req, res) => {
+  const itemid = req.body.itemid;
+  await prisma.haki.update({
+    where: {
+      id: itemid,
+    },
+    data:{
+      status: "rejected"
+    }
+  });
+  res.send("payment rejected")
+})
+
+app.post('/change-status/cancel', async (req, res) => {
+  const itemid = req.body.itemid;
+  await prisma.haki.update({
+    where: {
+      id: itemid,
+    },
+    data:{
+      status: "pending"
+    }
+  });
+  res.send("payment cancelled")
+})
+
 app.post('/find-haki', async (req, res) => {
   try {
     const itemid = req.body.itemid;

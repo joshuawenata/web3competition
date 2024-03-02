@@ -127,6 +127,21 @@ app.get('/get-username', async (req, res) => {
   }
 });
 
+app.post('/get-username-by-id', async (req, res) => {
+  try {
+    const uid = req.body.uid;
+    const user = await prisma.user.findUnique({
+      where:{
+        id: uid
+      }
+    })
+    res.status(200).json({ username: user.nama_lengkap });
+  } catch (error) {
+    console.error('Error fetching session:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
 app.get('/getUid', async (req, res) => {
   try {
     const uid = req.session.uid

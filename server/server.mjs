@@ -369,10 +369,11 @@ app.post('/change-status/approve', async (req, res) => {
   const itemid = req.body.itemid;
   await prisma.haki.update({
     where: {
-      id: itemid,
+      id: itemid
     },
     data:{
-      status: "approved"
+      status: "approved",
+      reason: ''
     }
   });
   res.send("payment approved")
@@ -380,12 +381,14 @@ app.post('/change-status/approve', async (req, res) => {
 
 app.post('/change-status/reject', async (req, res) => {
   const itemid = req.body.itemid;
+  const reason = req.body.reason;
   await prisma.haki.update({
     where: {
-      id: itemid,
+      id: itemid
     },
     data:{
-      status: "rejected"
+      status: "rejected",
+      reason: reason
     }
   });
   res.send("payment rejected")

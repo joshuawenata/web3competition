@@ -1,7 +1,20 @@
 "use client";
 import Navbar from "@/app/components/navbar";
-import NavbarLoggedin from "@/app/components/navbar-logged-in";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+
+interface Haki {
+  id: number;
+  uid: number;
+  jenis_ciptaan: string
+  judul_ciptaan: string
+  tanggal_ciptaan: string
+  negara_ciptaan: string
+  kota_ciptaan: string
+  deskripsi_ciptaan: string
+  status: string   
+  reason: string
+}
 
 export default function Home() {
   const router = useRouter();
@@ -9,6 +22,52 @@ export default function Home() {
   const handleCancel = () => {
     router.push('/your-haki')
   }
+
+  const [hakis, setHakis] = useState<Haki>();
+  const [pemilik, setPemilik] = useState('');
+
+  const itemid = localStorage.getItem('itemid');
+  const findHaki = async () => {
+    try {
+      const response = await fetch("http://localhost:4000/find-haki", {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({itemid: itemid}),
+          credentials: 'include',
+      });
+
+      if (!response.ok) {
+          throw new Error('Network response was not ok');
+      }
+
+      const {item} = await response.json();
+      setHakis(item[0]);
+
+      const responses = await fetch("http://localhost:4000/get-username", {
+          method: 'GET',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          credentials: 'include',
+      });
+
+      if (!responses.ok) {
+          throw new Error('Network response was not ok');
+      }
+
+      const {username} = await responses.json();
+      setPemilik(username);
+      console.log(username)
+    } catch (error: any) {
+        console.error('Error fetching Haki:', error.message);
+    }
+  }
+
+  useEffect(() => {
+    findHaki()
+  },[])
   
   return (
     <main className="bg-background min-h-screen w-screen">
@@ -37,7 +96,7 @@ export default function Home() {
                     </text>
                     <br />
                     <text className="text-base text-blues">
-                    BARANG
+                    {hakis?.jenis_ciptaan}
                     </text>
                 </div>
 
@@ -49,7 +108,7 @@ export default function Home() {
                     </text>
                     <br />
                     <text className="text-base text-blues">
-                    BALON TIDAK TERBANG
+                    {hakis?.judul_ciptaan}
                     </text>
                 </div>
 
@@ -61,7 +120,7 @@ export default function Home() {
                     </text>
                     <br />
                     <text className="text-base text-blues">
-                    22 Februari 2024
+                    {hakis?.tanggal_ciptaan}
                     </text>
                 </div>
                 <div 
@@ -72,7 +131,7 @@ export default function Home() {
                     </text>
                     <br />
                     <text className="text-base text-blues">
-                    INDONESIA
+                    {hakis?.negara_ciptaan}
                     </text>
                 </div>
                 <div 
@@ -83,7 +142,7 @@ export default function Home() {
                     </text>
                     <br />
                     <text className="text-base text-red-500">
-                    REJECTED
+                    {hakis?.status}
                     </text>
                 </div>
     
@@ -105,7 +164,7 @@ export default function Home() {
                     </text>
                     <br />
                     <text className="text-base text-blues">
-                    BANDUNG
+                    {hakis?.kota_ciptaan}
                     </text>
                 </div>
 
@@ -117,7 +176,7 @@ export default function Home() {
                     </text>
                     <br />
                     <text className="text-base text-blues">
-                    BALON INI TIDAK TERBANG LOH
+                    {hakis?.deskripsi_ciptaan}
                     </text>
                 </div>
 
@@ -129,7 +188,7 @@ export default function Home() {
                     </text>
                     <br />
                     <text className="text-base text-blues">
-                    KINUT
+                    {pemilik}
                     </text>
                 </div>
                 <div 
@@ -140,7 +199,7 @@ export default function Home() {
                     </text>
                     <br />
                     <text className="text-base text-red-500">
-                    SUDAH ADA
+                    {hakis?.reason}
                     </text>
                 </div>
     

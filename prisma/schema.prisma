@@ -16,15 +16,16 @@ model user {
 }
 
 model haki {
-  id                Int    @id @default(autoincrement())
+  id                Int     @id @default(autoincrement())
   uid               Int
-  jenis_ciptaan     String @db.VarChar(255)
-  judul_ciptaan     String @db.VarChar(255)
-  tanggal_ciptaan   String @db.VarChar(255)
-  negara_ciptaan    String @db.VarChar(255)
-  kota_ciptaan      String @db.VarChar(255)
-  deskripsi_ciptaan String @db.VarChar(255)
-  status            String @db.VarChar(255)
+  jenis_ciptaan     String  @db.VarChar(255)
+  judul_ciptaan     String  @db.VarChar(255)
+  tanggal_ciptaan   String  @db.VarChar(255)
+  negara_ciptaan    String  @db.VarChar(255)
+  kota_ciptaan      String  @db.VarChar(255)
+  deskripsi_ciptaan String  @db.VarChar(255)
+  status            String  @db.VarChar(255)
+  reason            String? @default("") @db.VarChar(255)
 }
 
 model barcode {
@@ -34,6 +35,6 @@ model barcode {
 
 model inventory {
   id  Int @id @default(autoincrement())
-  uid Int @unique
+  uid Int
   hid Int
 }

@@ -20,6 +20,7 @@ interface Haki {
 export default function Home() {
     const router = useRouter();
 
+    const [pemilik, setPemilik] = useState('');
     const [items, setItems] = useState<Haki[]>([]);
     const [filteredItems, setFilteredItems] = useState<Haki[]>([]);
     const [uid, setUid] = useState(0);

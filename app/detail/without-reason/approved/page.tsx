@@ -42,12 +42,13 @@ export default function Home() {
       const {item} = await response.json();
       setHakis(item[0]);
 
-      const responses = await fetch("http://localhost:4000/get-username", {
-          method: 'GET',
+      const responses = await fetch("http://localhost:4000/get-username-by-id", {
+          method: 'POST',
           headers: {
               'Content-Type': 'application/json',
           },
           credentials: 'include',
+          body: JSON.stringify({uid: item[0]?.uid})
       });
 
       if (!responses.ok) {
@@ -66,8 +67,24 @@ export default function Home() {
     findHaki()
   },[])
 
-  const handleCancel = () => {
-    router.push('/your-haki')
+  const handleCancel = async () => {
+    const responses = await fetch("http://localhost:4000/get-username", {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        credentials: 'include',
+    });
+    if (!responses.ok) {
+      throw new Error('Network response was not ok');
+    }
+
+    const {username} = await responses.json();
+
+    username=="admin"?
+      router.push('/admin-page/approval')
+    :
+      router.push('/your-haki')
   }
   
   return (

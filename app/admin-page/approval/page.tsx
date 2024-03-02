@@ -1,6 +1,7 @@
 "use client";
 
 import NavbarAdmin from "@/app/components/navbar-admin";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import Popup from "reactjs-popup";
 
@@ -381,13 +382,14 @@ export default function Home() {
                         <th className="border border-blue-600 pl-2 bg-darkblue px-1 py-2">No</th>
                         <th className="border border-blue-600 pl-2 bg-darkblue px">Item ID</th>
                         <th className="border border-blue-600 pl-2 bg-darkblue">Judul</th>
-                        <th className="border border-blue-600 pl-2 bg-darkblue">Status</th>
                         <th className="border border-blue-600 pl-2 bg-darkblue">Export to PDF</th>
+                        <th className="border border-blue-600 pl-2 bg-darkblue">Status</th>
                         <th className="border border-blue-600 pl-2 bg-darkblue" style={{width:"25rem"}}>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {items.length > 0 && (
+                        {items.length > 0 ? 
+                        (
                             items.map((item, index) => (
                                 <tr className="bg-lgtbluebg text-black" key={index}>
                                     <td className="border border-blue-600 pl-2 px-1 py-1">{index + 1}</td>
@@ -403,7 +405,26 @@ export default function Home() {
                                             EXPORT
                                         </button>
                                     </td>
-                                    <td className="border border-blue-600 pl-2">{item.status}</td>
+                                    {item.status=="pending"?
+                                        <td className="border border-blue-600 pl-2 text-lgtblue">
+                                            <Link href={{ pathname: '/detail/with-reason/pending' }} onClick={() => {localStorage.setItem('itemid',String(item.id))}}>
+                                                {item.status}
+                                            </Link>
+                                        </td>
+                                        :
+                                    item.status=="approved"?
+                                            <td className="border border-blue-600 pl-2 text-greenapr">
+                                                <Link href={{ pathname: '/detail/without-reason/approved' }} onClick={() => {localStorage.setItem('itemid',String(item.id))}}>
+                                                    {item.status}
+                                                </Link>
+                                            </td>
+                                        :
+                                            <td className="border border-blue-600 pl-2 text-reds">
+                                                <Link href={{ pathname: '/detail/with-reason/rejected' }} onClick={() => {localStorage.setItem('itemid',String(item.id))}}>
+                                                    {item.status}
+                                                </Link>
+                                            </td>
+                                    }
                                     {item.status === "pending" ? (
                                         <td className="flex border border-blue-600 text-white">
                                             <Popup
@@ -467,7 +488,12 @@ export default function Home() {
                                     )}
                                 </tr>
                             ))
-                        )}
+                        )
+                        :
+                        <tr>
+                            <td className="border text-lgtblue border-blue-600 pl-2 px-1 py-1 text-center" colSpan={6}>No items</td>
+                        </tr>
+                    }
                     </tbody>
                 </table>    
             </div>

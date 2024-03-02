@@ -14,6 +14,7 @@ interface Haki {
     kota_ciptaan: string
     deskripsi_ciptaan: string
     status: string   
+    reason: string
 }
 
 export default function Home() {
@@ -68,6 +69,7 @@ export default function Home() {
 
     useEffect(() => {
         fetchHaki()
+        fetchUid()
     },[])
 
     const handleBuy = async (hid: number) => {

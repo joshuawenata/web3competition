@@ -14,6 +14,7 @@ interface Haki {
   kota_ciptaan: string
   deskripsi_ciptaan: string
   status: string   
+  reason: string
 }
 
 export default function Home() {

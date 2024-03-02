@@ -14,7 +14,8 @@ export default function Home() {
     negara_ciptaan:'',
     kota_ciptaan:'',
     deskripsi_ciptaan:'',
-    status:'pending'
+    status:'pending',
+    reason: ''
   });
   
   const handleChange = (e: any) => {

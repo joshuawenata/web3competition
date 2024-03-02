@@ -15,6 +15,7 @@ interface Haki {
     kota_ciptaan: string
     deskripsi_ciptaan: string
     status: string   
+    reason: string
 }
 
 export default function Home() {
@@ -83,16 +84,6 @@ export default function Home() {
         } catch (error) {
             console.error('Error exporting PDF:', error);
         }
-    }
-
-    const handleDetailRejected = () => {
-      router.push('/detail/with-reason/rejected')
-    }  
-    const handleDetailPending = () => {
-      router.push('/detail/with-reason/pending')
-    }  
-    const handleDetailApproved = () => {
-      router.push('/detail/without-reason/approved')
     }
 
     const [filterEnabled, setFilter] = useState(false);
@@ -379,7 +370,6 @@ export default function Home() {
                         <th className="border border-blue-600 pl-2 bg-darkblue">Judul</th>
                         <th className="border border-blue-600 pl-2 bg-darkblue">Deskripsi</th>
                         <th className="border border-blue-600 pl-2 bg-darkblue">Export to PDF</th>
-                        <th className="border border-blue-600 pl-2 bg-darkblue">Status</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -393,26 +383,6 @@ export default function Home() {
                                 <td className="flex border border-blue-600 text-white">
                                     <button onClick={() => {handleExport(item.id)}} className="font-krona-one bg-yellow-500 mx-2 my-1 px-2 py-2 rounded-xl w-full">EXPORT</button>
                                 </td>
-                                {item.status=="pending"?
-                                        <td className="border border-blue-600 pl-2 text-lgtblue">
-                                            <Link href={{ pathname: '/detail/with-reason/pending' }} onClick={() => {localStorage.setItem('itemid',String(item.id))}}>
-                                                {item.status}
-                                            </Link>
-                                        </td>
-                                    :
-                                item.status=="approved"?
-                                        <td className="border border-blue-600 pl-2 text-greenapr">
-                                            <Link href={{ pathname: '/detail/without-reason/approved' }} onClick={() => {localStorage.setItem('itemid',String(item.id))}}>
-                                                {item.status}
-                                            </Link>
-                                        </td>
-                                    :
-                                        <td className="border border-blue-600 pl-2 text-reds">
-                                            <Link href={{ pathname: '/detail/with-reason/rejected' }} onClick={() => {localStorage.setItem('itemid',String(item.id))}}>
-                                                {item.status}
-                                            </Link>
-                                        </td>
-                                }
                             </tr>) : (null)))) : (
                         <tr>
                             <td className="border text-lgtblue border-blue-600 pl-2 px-1 py-1 text-center" colSpan={6}>No items</td>

@@ -21,6 +21,7 @@ CREATE TABLE `haki` (
     `kota_ciptaan` VARCHAR(255) NOT NULL,
     `deskripsi_ciptaan` VARCHAR(255) NOT NULL,
     `status` VARCHAR(255) NOT NULL,
+    `reason` VARCHAR(255) NULL DEFAULT '',
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;

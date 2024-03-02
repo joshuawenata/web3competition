@@ -40,6 +40,5 @@ CREATE TABLE `inventory` (
     `uid` INTEGER NOT NULL,
     `hid` INTEGER NOT NULL,
 
-    UNIQUE INDEX `inventory_uid_key`(`uid`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;

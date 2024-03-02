@@ -18,10 +18,10 @@ interface Haki {
 
 export default function Home() {
     const [items, setItems] = useState<Haki[]>([]);
-
+    
     const fetchHaki = async () => {
         try {
-            const response = await fetch("http://localhost:4000/fetch-inventory", {
+            const response = await fetch("http://localhost:4000/admin/fetch-inventory", {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -58,6 +58,42 @@ export default function Home() {
             setText({jenis : 'jenis ciptaan', negara : 'negara', kota: 'kota'})
         }
     };
+
+    async function handleExport(itemid: number) {
+        try {
+            const response = await fetch("http://localhost:4000/export-pdf", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                credentials: 'include',
+                body: JSON.stringify({itemid: itemid}),
+            });
+    
+            if (!response.ok) {
+                throw new Error(`Failed to export PDF: ${response.statusText}`);
+            }
+    
+            // Retrieve the PDF content type from the response headers
+            const contentType = response.headers.get('Content-Type');
+    
+            // Check if the response is a PDF
+            if (contentType && contentType.includes('application/pdf')) {
+                // Create a Blob from the response data
+                const blob = await response.blob();
+    
+                // Create a URL for the Blob
+                const url = URL.createObjectURL(blob);
+    
+                // Open the PDF in a new browser tab
+                window.open(url, '_blank');
+            } else {
+                console.error('Invalid response format. Expected PDF.');
+            }
+        } catch (error) {
+            console.error('Error exporting PDF:', error);
+        }
+    }
 
     async function handleApprove(itemid: number) {
         try {
@@ -341,28 +377,68 @@ export default function Home() {
                         <th className="border border-blue-600 pl-2 bg-darkblue px">Item ID</th>
                         <th className="border border-blue-600 pl-2 bg-darkblue">Judul</th>
                         <th className="border border-blue-600 pl-2 bg-darkblue">Status</th>
+                        <th className="border border-blue-600 pl-2 bg-darkblue">Export to PDF</th>
                         <th className="border border-blue-600 pl-2 bg-darkblue" style={{width:"25rem"}}>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {items.map((item, index) => (
+                        {items.length > 0 ? (
+                            items.map((item, index) => (
                             <tr className="bg-lgtbluebg text-black" key={index}>
                                 <td className="border border-blue-600 pl-2 px-1 py-1">{index + 1}</td>
                                 <td className="border border-blue-600 pl-2">{item.id}</td>
                                 <td className="border border-blue-600 pl-2">{item.judul_ciptaan}</td>
+                                <td className="flex border border-blue-600 text-white">
+                                <button
+                                    onClick={() => {
+                                    handleExport(item.id);
+                                    }}
+                                    className="font-krona-one bg-yellow-500 mx-2 my-1 px-2 py-2 rounded-xl w-full"
+                                >
+                                    EXPORT
+                                </button>
+                                </td>
                                 <td className="border border-blue-600 pl-2">{item.status}</td>
-                                {item.status=="pending"?
-                                    <td className="flex border border-blue-600 text-white">
-                                        <button onClick={() => {handleApprove(item.id)}} className="font-krona-one bg-green-700 mx-2 my-1 px-2 py-2 rounded-xl w-full">APPROVE</button>
-                                        <button onClick={() => {handleReject(item.id)}} className="font-krona-one bg-red-600 mx-2 my-1 px-2 py-2 rounded-xl w-full">REJECT</button>
-                                    </td>
-                                :
-                                    <td className="flex border border-blue-600 text-white">
-                                        <button onClick={() => {handleCancel(item.id)}} className="font-krona-one bg-red-600 mx-2 my-1 px-2 py-2 rounded-xl w-full">CANCEL</button>
-                                    </td>                            
-                                }
+                                {item.status === "pending" ? (
+                                <td className="flex border border-blue-600 text-white">
+                                    <button
+                                    onClick={() => {
+                                        handleApprove(item.id);
+                                    }}
+                                    className="font-krona-one bg-green-700 mx-2 my-1 px-2 py-2 rounded-xl w-full"
+                                    >
+                                    APPROVE
+                                    </button>
+                                    <button
+                                    onClick={() => {
+                                        handleReject(item.id);
+                                    }}
+                                    className="font-krona-one bg-red-600 mx-2 my-1 px-2 py-2 rounded-xl w-full"
+                                    >
+                                    REJECT
+                                    </button>
+                                </td>
+                                ) : (
+                                <td className="flex border border-blue-600 text-white">
+                                    <button
+                                    onClick={() => {
+                                        handleCancel(item.id);
+                                    }}
+                                    className="font-krona-one bg-red-600 mx-2 my-1 px-2 py-2 rounded-xl w-full"
+                                    >
+                                    CANCEL
+                                    </button>
+                                </td>
+                                )}
                             </tr>
-                        ))}
+                            ))
+                        ) : (
+                            <tr>
+                            <td className="border text-lgtblue border-blue-600 pl-2 px-1 py-1 text-center" colSpan={6}>
+                                No items
+                            </td>
+                            </tr>
+                        )}
                     </tbody>
                 </table>    
             </div>

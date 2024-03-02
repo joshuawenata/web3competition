@@ -1,11 +1,9 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import Navbar from "../components/navbar";
 import NavbarLoggedin from "../components/navbar-logged-in";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { stringify } from "querystring";
 
 interface Haki {
     id: number;
@@ -51,6 +49,42 @@ export default function Home() {
         fetchHaki()
     },[])
 
+    async function handleExport(itemid: number) {
+        try {
+            const response = await fetch("http://localhost:4000/export-pdf", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                credentials: 'include',
+                body: JSON.stringify({itemid: itemid}),
+            });
+    
+            if (!response.ok) {
+                throw new Error(`Failed to export PDF: ${response.statusText}`);
+            }
+    
+            // Retrieve the PDF content type from the response headers
+            const contentType = response.headers.get('Content-Type');
+    
+            // Check if the response is a PDF
+            if (contentType && contentType.includes('application/pdf')) {
+                // Create a Blob from the response data
+                const blob = await response.blob();
+    
+                // Create a URL for the Blob
+                const url = URL.createObjectURL(blob);
+    
+                // Open the PDF in a new browser tab
+                window.open(url, '_blank');
+            } else {
+                console.error('Invalid response format. Expected PDF.');
+            }
+        } catch (error) {
+            console.error('Error exporting PDF:', error);
+        }
+    }
+
     const handleDetailRejected = () => {
       router.push('/detail/with-reason/rejected')
     }  
@@ -60,8 +94,6 @@ export default function Home() {
     const handleDetailApproved = () => {
       router.push('/detail/without-reason/approved')
     }
-
-    
 
     const [filterEnabled, setFilter] = useState(false);
     const [page, setPage] = useState(1);
@@ -346,7 +378,7 @@ export default function Home() {
                         <th className="border border-blue-600 pl-2 bg-darkblue">Item ID</th>
                         <th className="border border-blue-600 pl-2 bg-darkblue">Judul</th>
                         <th className="border border-blue-600 pl-2 bg-darkblue">Deskripsi</th>
-                        <th className="border border-blue-600 pl-2 bg-darkblue">Barcode</th>
+                        <th className="border border-blue-600 pl-2 bg-darkblue">Export to PDF</th>
                         <th className="border border-blue-600 pl-2 bg-darkblue">Status</th>
                     </tr>
                 </thead>
@@ -358,7 +390,9 @@ export default function Home() {
                                 <td className="border border-blue-600 pl-2">{item.id}</td>
                                 <td className="border border-blue-600 pl-2">{item.judul_ciptaan}</td>
                                 <td className="border border-blue-600 pl-2">{item.deskripsi_ciptaan}</td>
-                                <td className="border border-blue-600 pl-2 text-lgtblue"><a href="#">Tampilkan</a></td>
+                                <td className="flex border border-blue-600 text-white">
+                                    <button onClick={() => {handleExport(item.id)}} className="font-krona-one bg-yellow-500 mx-2 my-1 px-2 py-2 rounded-xl w-full">EXPORT</button>
+                                </td>
                                 {item.status=="pending"?
                                         <td className="border border-blue-600 pl-2 text-lgtblue">
                                             <Link href={{ pathname: '/detail/with-reason/pending' }} onClick={() => {localStorage.setItem('itemid',String(item.id))}}>

@@ -268,7 +268,7 @@ export default function Home() {
                         <th className="border border-blue-600 pl-2 bg-darkblue px">Item ID</th>
                         <th className="border border-blue-600 pl-2 bg-darkblue">Judul</th>
                         <th className="border border-blue-600 pl-2 bg-darkblue">Deskripsi</th>
-                        <th className="border border-blue-600 pl-2 bg-darkblue">Barcode</th>
+                        <th className="border border-blue-600 pl-2 bg-darkblue">Export to PDF</th>
                         <th className="border border-blue-600 pl-2 bg-darkblue">Status</th>
                         </tr>
                     </thead>

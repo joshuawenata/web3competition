@@ -542,7 +542,7 @@ export default function Home() {
                                                     <div className='modal'>
                                                         <div className="bg-darkbluebg px-5 py-5 rounded-xl" style={{width:"30rem", height:"12rem", opacity:"85%"}}>
                                                             <div className="font-krona-one text-darkblue text-xl mb-5">Are you sure want to cancel?</div>
-                                                            <div className="font-krona-one text-darkblue text-xl mb-5">Current status : <text className="text-red-600">{item.status}</text></div>
+                                                            <div className="font-krona-one text-darkblue text-xl mb-5">Current status : <text className={item.status === "approved" ? ("text-greenapr"):("text-reds")}>{item.status}</text></div>
                                                             <div className="flex">
                                                                 <button onClick={() => {window.location.reload()}} className="font-krona-one bg-gray-500 mr-4 px-2 py-2 rounded-xl w-full" style={{height:"3rem"}}>NO</button>
                                                                 <button onClick={() => {handleCancel(item.id)}} className="font-krona-one bg-red-600 px-2 py-2 rounded-xl w-full" style={{height:"3rem"}}>YES</button>

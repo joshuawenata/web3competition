@@ -217,7 +217,7 @@ export default function Home () {
                     </text>
                     <br />
                     <text className="text-base text-blue-500">
-                    MENUNGGU PEMBAYARAN
+                    MENUNGGU APPROVAL PEMBAYARAN
                     </text>
                 </div>
     

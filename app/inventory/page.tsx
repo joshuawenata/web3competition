@@ -37,6 +37,7 @@ export default function Home() {
 
             const {item} = await response.json();
             setItems(item);
+            setFilteredItems(item);
         } catch (error: any) {
             console.error('Error fetching Haki:', error.message);
         }

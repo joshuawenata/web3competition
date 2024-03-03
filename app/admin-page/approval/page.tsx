@@ -51,18 +51,18 @@ export default function Home() {
 
     const [filterEnabled, setFilter] = useState(false);
     const [page, setPage] = useState(1);
-    const [text, setText] = useState({jenis : 'jenis ciptaan', negara : 'negara', kota: 'kota', tanggal: ''});
+    const [text, setText] = useState({jenis : 'jenis ciptaan', negara : 'negara', kota: 'kota', tanggal: '', status: 'status'});
     let itemsPerPage = 10;
     let number = 0;
 
     const handleFilter = () => {
         if (!filterEnabled) {
             setFilter(true)
-            setText({jenis : 'jenis ciptaan', negara : 'negara', kota: 'kota', tanggal: ''})
+            setText({jenis : 'jenis ciptaan', negara : 'negara', kota: 'kota', tanggal: '', status: 'status'})
         }
         else {
             setFilter(false)
-            setText({jenis : 'jenis ciptaan', negara : 'negara', kota: 'kota', tanggal: ''})
+            setText({jenis : 'jenis ciptaan', negara : 'negara', kota: 'kota', tanggal: '', status: 'status'})
         }
     };
 
@@ -87,7 +87,8 @@ export default function Home() {
                     ((text.jenis === 'jenis ciptaan' || item.jenis_ciptaan === text.jenis) &&
                     (text.negara === 'negara' || item.negara_ciptaan === text.negara) &&
                     (text.kota === 'kota' || item.kota_ciptaan === text.kota) &&
-                    (text.tanggal === '' || item.tanggal_ciptaan === text.tanggal))) {
+                    (text.tanggal === '' || item.tanggal_ciptaan === text.tanggal) &&
+                    (text.status === 'status' || item.status === text.status))) {
                     setFilteredItems(prevFilteredItems => [...prevFilteredItems, item]);
                 }
             });
@@ -396,6 +397,18 @@ export default function Home() {
                             <option value="kota-lainnya">KOTA LAINNYA</option>
                         </select>
                     </div>
+                    <div className="mr-5">
+                        <select 
+                            id="status" 
+                            className="bg-gray-50 border font-krona-one text-base h-12 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-5 p-2.5  dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            style    = {{width: `${text.status.length + 4}rem`}}
+                            onChange={(e) => setText({...text, status : e.target.value})} >
+                            <option selected disabled value="">STATUS</option>
+                            <option value="approved">APPROVED</option>
+                            <option value="pending">PENDING</option>
+                            <option value="rejected">REJECTED</option>
+                        </select>
+                    </div>
                     <div>
                         <input 
                         type="date" 
@@ -472,7 +485,7 @@ export default function Home() {
                                                         <div className="bg-darkbluebg px-5 py-5 rounded-xl" style={{width:"30rem", height:"9rem", opacity:"85%"}}>
                                                             <div className="font-krona-one text-darkblue text-xl mb-5">Approval Confirmation</div>
                                                             <div className="flex">
-                                                                <button onClick={() => {window.location.reload()}} className="font-krona-one bg-gray-500 mr-4 px-2 py-2 rounded-xl w-full" style={{height:"3rem"}}>CANCEL</button>
+                                                                <button onClick={() => {window.location.reload()}} className="font-krona-one bg-gray-500 mr-4 px-2 py-2 rounded-xl w-full" style={{height:"3rem"}}>BACK</button>
                                                                 <button onClick={() => {handleApprove(item.id)}} className="font-krona-one bg-green-700 px-2 py-2 rounded-xl w-full" style={{height:"3rem"}}>APPROVE</button>
                                                             </div>
                                                         </div>
@@ -490,6 +503,7 @@ export default function Home() {
                                                 nested
                                             >
                                                 {
+                                                    
                                                     <div className='modal'>
                                                         <div className="bg-darkbluebg px-5 py-5 rounded-xl" style={{width:"30rem", height:"14rem", opacity:"85%"}}>
                                                             <div className="font-krona-one text-darkblue text-xl mb-5">Reason :</div>
@@ -502,7 +516,7 @@ export default function Home() {
                                                                 required 
                                                             />
                                                             <div className="flex">
-                                                                <button onClick={() => {window.location.reload()}} className="font-krona-one bg-gray-500 mr-4 px-2 py-2 rounded-xl w-full" style={{height:"3rem"}}>CANCEL</button>
+                                                                <button onClick={() => {window.location.reload()}} className="font-krona-one bg-gray-500 mr-4 px-2 py-2 rounded-xl w-full" style={{height:"3rem"}}>BACK</button>
                                                                 <button onClick={() => {handleReject(item.id)}} className="font-krona-one bg-red-600 px-2 py-2 rounded-xl w-full" style={{height:"3rem"}}>REJECT</button>
                                                             </div>
                                                         </div>
@@ -512,9 +526,31 @@ export default function Home() {
                                         </td>
                                     ) : (
                                         <td className="flex border border-blue-600 text-white">
-                                            <button onClick={() => {handleCancel(item.id)}} className="font-krona-one bg-red-600 mx-2 my-1 px-2 py-2 rounded-xl w-full">
+                                            {/* <button onClick={() => {handleCancel(item.id)}} className="font-krona-one bg-red-600 mx-2 my-1 px-2 py-2 rounded-xl w-full">
                                                 CANCEL
-                                            </button>
+                                            </button> */}
+                                            <Popup
+                                                trigger={
+                                                    <button className="font-krona-one bg-red-600 mx-2 my-1 px-2 py-2 rounded-xl w-full">
+                                                        CANCEL
+                                                    </button>
+                                                }
+                                                modal
+                                                nested
+                                            >
+                                                {
+                                                    <div className='modal'>
+                                                        <div className="bg-darkbluebg px-5 py-5 rounded-xl" style={{width:"30rem", height:"12rem", opacity:"85%"}}>
+                                                            <div className="font-krona-one text-darkblue text-xl mb-5">Are you sure want to cancel?</div>
+                                                            <div className="font-krona-one text-darkblue text-xl mb-5">Current status : <text className="text-red-600">{item.status}</text></div>
+                                                            <div className="flex">
+                                                                <button onClick={() => {window.location.reload()}} className="font-krona-one bg-gray-500 mr-4 px-2 py-2 rounded-xl w-full" style={{height:"3rem"}}>NO</button>
+                                                                <button onClick={() => {handleCancel(item.id)}} className="font-krona-one bg-red-600 px-2 py-2 rounded-xl w-full" style={{height:"3rem"}}>YES</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                }
+                                            </Popup>
                                         </td>
                                     )}
                                 </tr>) : (null)))) : (

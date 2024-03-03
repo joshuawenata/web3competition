@@ -88,18 +88,18 @@ export default function Home() {
 
     const [filterEnabled, setFilter] = useState(false);
     const [page, setPage] = useState(1);
-    const [text, setText] = useState({jenis : 'jenis ciptaan', negara : 'negara', kota: 'kota', tanggal: ''});
+    const [text, setText] = useState({jenis : 'jenis ciptaan', negara : 'negara', kota: 'kota', tanggal: '', status: 'status'});
     let itemsPerPage = 10;
     let number = 0;
 
     const handleFilter = () => {
         if (!filterEnabled) {
             setFilter(true)
-            setText({jenis : 'jenis ciptaan', negara : 'negara', kota: 'kota', tanggal: ''})
+            setText({jenis : 'jenis ciptaan', negara : 'negara', kota: 'kota', tanggal: '', status: 'status'})
         }
         else {
             setFilter(false)
-            setText({jenis : 'jenis ciptaan', negara : 'negara', kota: 'kota', tanggal: ''})
+            setText({jenis : 'jenis ciptaan', negara : 'negara', kota: 'kota', tanggal: '', status: 'status'})
         }
     };
 
@@ -124,7 +124,8 @@ export default function Home() {
                     ((text.jenis === 'jenis ciptaan' || item.jenis_ciptaan === text.jenis) &&
                     (text.negara === 'negara' || item.negara_ciptaan === text.negara) &&
                     (text.kota === 'kota' || item.kota_ciptaan === text.kota) &&
-                    (text.tanggal === '' || item.tanggal_ciptaan === text.tanggal))) {
+                    (text.tanggal === '' || item.tanggal_ciptaan === text.tanggal) &&
+                    (text.status === 'status' || item.status === text.status))) {
                     setFilteredItems(prevFilteredItems => [...prevFilteredItems, item]);
                 }
             });
@@ -347,6 +348,18 @@ export default function Home() {
                             <option value="singkawang">SINGKAWANG</option>
                             <option value="tegal">TEGAL</option>
                             <option value="kota-lainnya">KOTA LAINNYA</option>
+                        </select>
+                    </div>
+                    <div className="mr-5">
+                        <select 
+                            id="status" 
+                            className="bg-gray-50 border font-krona-one text-base h-12 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-5 p-2.5  dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            style    = {{width: `${text.status.length + 4}rem`}}
+                            onChange={(e) => setText({...text, status : e.target.value})} >
+                            <option selected disabled value="">STATUS</option>
+                            <option value="approved">APPROVED</option>
+                            <option value="pending">PENDING</option>
+                            <option value="rejected">REJECTED</option>
                         </select>
                     </div>
                     <div>

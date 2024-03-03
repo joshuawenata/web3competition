@@ -86,11 +86,18 @@ export default function Home() {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
+
+            const responseBody = await response.text();
+
+            if(responseBody=='already buy this item!'){
+                router.push('/error-buy')
+            }else{
+                router.push('/payment')
+            }
             
         } catch (error) {
-            
+            console.log(error)
         }
-        router.push('/payment')
     }
 
     const [filterEnabled, setFilter] = useState(false);

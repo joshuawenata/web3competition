@@ -72,8 +72,20 @@ app.post('/register-haki', async (req, res) => {
 
 app.post('/buy-haki', async (req, res) => {
   const data = req.body;
-  const newInventory = await prisma.inventory.create({data})
-  res.status(201).send(newInventory);
+  const validate = await prisma.inventory.findMany({
+    where:{
+      uid: data.uid,
+      hid: data.hid
+    }
+  })
+
+  if(validate.length > 0){
+    res.send('already buy this item!');
+  }else{
+    const newInventory = await prisma.inventory.create({data})
+    res.status(201).send(newInventory);
+  }
+
 })
 
 app.post('/login-account', async (req, res) => {

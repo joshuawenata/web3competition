@@ -6,23 +6,24 @@ export default function Home() {
   const router = useRouter();
 
   const handleCancel = async () => {
-    const responses = await fetch("http://localhost:4000/get-username", {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        credentials: 'include',
-    });
-    if (!responses.ok) {
-      throw new Error('Network response was not ok');
-    }
+    // const responses = await fetch("http://localhost:4000/get-username", {
+    //     method: 'GET',
+    //     headers: {
+    //         'Content-Type': 'application/json',
+    //     },
+    //     credentials: 'include',
+    // });
+    // if (!responses.ok) {
+    //   throw new Error('Network response was not ok');
+    // }
 
-    const {username} = await responses.json();
+    // const {username} = await responses.json();
 
-    username=="admin"?
-      router.push('/admin-page/approval')
-    :
-      router.push('/your-haki')
+    // username=="admin"?
+    //   router.push('/admin-page/approval')
+    // :
+    //   router.push('/see-haki')
+    router.back();
   }
 
   return (

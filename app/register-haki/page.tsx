@@ -136,9 +136,9 @@ export default function Home() {
             <path d="M184.943 258.803H117.697C115.633 258.803 113.995 260.474 113.995 262.506C113.995 264.57 115.666 266.208 117.697 266.208H186.253L184.943 258.803Z" fill="#B2B2B2"/>
             <path d="M250.682 213.615C250.682 219.545 255.465 224.328 261.393 224.328C267.322 224.328 272.104 219.512 272.104 213.615C272.104 207.685 267.289 202.901 261.393 202.901C255.465 202.901 250.682 207.685 250.682 213.615Z" fill="white"/>
             <path d="M75.6722 143.684L39.7071 201.773L125.787 232.505L113.996 257.995C113.996 257.995 40.3949 249.738 4.82286 222.316C1.54736 219.793 -0.0903854 215.698 0.466454 211.602C2.13696 198.497 9.27757 166.684 39.7071 121.471C45.8978 112.264 58.2137 109.479 67.8109 115.049C77.8012 120.815 81.306 133.593 75.6722 143.684Z" fill="#F7EBE7"/>
-            <path d="M102.892 224.329L39.7077 201.788L71.3164 150.711" stroke="#EADDD8" stroke-width="0.7599" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M145.671 205.08L161.229 163.995" stroke="#EADDD8" stroke-width="0.7599" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M101.877 256.271C101.877 256.271 53.53 250.21 29.1602 236.253" stroke="#EADDD8" stroke-width="0.7599" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M102.892 224.329L39.7077 201.788L71.3164 150.711" stroke="#EADDD8" strokeWidth="0.7599" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M145.671 205.08L161.229 163.995" stroke="#EADDD8" strokeWidth="0.7599" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M101.877 256.271C101.877 256.271 53.53 250.21 29.1602 236.253" stroke="#EADDD8" strokeWidth="0.7599" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
 
         {/* form section */}

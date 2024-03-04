@@ -110,10 +110,17 @@ export default function Home() {
   };
 
   const handleNext = () => {
-    if (page < Math.floor(filteredItems.length / itemsPerPage) + 1) {
-      setPage(page + 1);
+    let totalPage;
+    if (!filteredItems.length) {
+        totalPage = 1
     }
-  };
+    else {
+        totalPage = Math.ceil(filteredItems.length / itemsPerPage)
+    }
+    if (page < totalPage) {
+        setPage(page+1)
+    }
+  }
 
   const handlePrev = () => {
     if (page > 1) {
@@ -253,7 +260,7 @@ export default function Home() {
       />
 
       <NavbarAdmin />
-
+      
       {username === "admin"?
         <div>
             <div className="flex flex-row place-content-start pl-10 pr-10 pt-5 pb-5">
@@ -786,8 +793,7 @@ export default function Home() {
 
                 <div className="grid grid-cols-6 gap-4">
                 <div className="col-start-1 font-krona-one text-black pl-10">
-                    Halaman {page} dari{" "}
-                    {Math.floor(filteredItems.length / itemsPerPage) + 1}
+                  Halaman {page} dari {!filteredItems.length ? (1) : (Math.ceil(filteredItems.length / itemsPerPage))}
                 </div>
                 <div className="col-end-7 col-span-2">
                     <div className="flex flex-row-reverse pr-10">

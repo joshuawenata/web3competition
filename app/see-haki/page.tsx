@@ -90,7 +90,7 @@ export default function Home() {
             const responseBody = await response.text();
 
             if(responseBody=='already buy this item!'){
-                router.push('/error-buy')
+                router.push('/error/error-buy')
             }else{
                 router.push('/payment')
             }

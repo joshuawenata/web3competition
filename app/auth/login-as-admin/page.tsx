@@ -31,12 +31,14 @@ export default function Home() {
             // You may need to include additional headers like authentication tokens
           },
           body: JSON.stringify({email: formData.email, password: formData.password}),
+          credentials: 'include'
         });
   
         if (response.ok) {
-          // Handle successful response
           if(formData.email=="admin@admin.com"){
             router.push('/admin-page/approval');
+          }else{
+            router.push('/see-haki');
           }
         } else {
           // Handle error response
@@ -68,9 +70,9 @@ export default function Home() {
         <div className="flex justify-center" style={{marginTop:"2rem"}}>
 
           <form onSubmit={handleSubmit}> 
-          <div className="text-2xl font-krona-one pt-3 pb-5 text-darkblue">
-            Administrator Login
-          </div>
+            <div className="text-2xl font-krona-one pt-3 pb-5 text-darkblue">
+              Administrator Login
+            </div>
 
             <div className="relative w-full mt-3">
                 <input 

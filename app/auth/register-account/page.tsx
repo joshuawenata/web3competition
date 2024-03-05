@@ -104,7 +104,7 @@ export default function Home() {
                     type="text" 
                     id="nama_lengkap" 
                     className="bg-gray-50 border font-krona-one text-base h-16 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-5 p-2.5  dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500" 
-                    placeholder="Nama Lengkap"
+                    placeholder="Full Name"
                     onChange={handleChange}
                     style={{ width: "32rem" }} 
                     required />
@@ -114,7 +114,7 @@ export default function Home() {
                     type="text" 
                     id="NIK" 
                     className="bg-gray-50 border font-krona-one text-base h-16 border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-5 p-2.5  dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500" 
-                    placeholder="NIK"
+                    placeholder="ID Number"
                     onChange={handleChange}
                     style={{ width: "32rem" }} 
                     required />

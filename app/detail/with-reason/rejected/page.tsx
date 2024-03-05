@@ -110,7 +110,7 @@ export default function Home() {
                 className="mt-3 bg-gray-50 border font-krona-one h-16 border-gray-300 rounded-lg block w-full ps-4 p-1.5" 
                 style={{ width: "36rem" }} >
                     <text className="text-sm text-gray-400">
-                    Jenis Ciptaan
+                    Type
                     </text>
                     <br />
                     <text className="text-base text-blues">
@@ -122,7 +122,7 @@ export default function Home() {
                 className="mt-3 bg-gray-50 border font-krona-one h-16 border-gray-300 rounded-lg block w-full ps-4 p-1.5" 
                 style={{ width: "36rem" }} >
                     <text className="text-sm text-gray-400">
-                    Judul Ciptaan
+                    Title
                     </text>
                     <br />
                     <text className="text-base text-blues">
@@ -134,7 +134,7 @@ export default function Home() {
                 className="mt-3 bg-gray-50 border font-krona-one h-16 border-gray-300 rounded-lg block w-full ps-4 p-1.5" 
                 style={{ width: "36rem" }} >
                     <text className="text-sm text-gray-400">
-                    Tanggal Ciptaan Diumumkan
+                    Date
                     </text>
                     <br />
                     <text className="text-base text-blues">
@@ -145,7 +145,7 @@ export default function Home() {
                 className="mt-3 bg-gray-50 border font-krona-one h-16 border-gray-300 rounded-lg block w-full ps-4 p-1.5" 
                 style={{ width: "36rem" }} >
                     <text className="text-sm text-gray-400">
-                    Negara Ciptaan Diumumkan
+                    Country
                     </text>
                     <br />
                     <text className="text-base text-blues">
@@ -178,7 +178,7 @@ export default function Home() {
                 className="mt-3 bg-gray-50 border font-krona-one h-16 border-gray-300 rounded-lg block w-full ps-4 p-1.5" 
                 style={{ width: "36rem" }} >
                     <text className="text-sm text-gray-400">
-                    Kota Ciptaan Diumumkan
+                    City
                     </text>
                     <br />
                     <text className="text-base text-blues">
@@ -190,7 +190,7 @@ export default function Home() {
                 className="mt-3 bg-gray-50 border font-krona-one border-gray-300 rounded-lg block w-full ps-4 p-1.5" 
                 style={{ width: "36rem", height: "8.75rem"}} >
                     <text className="text-sm text-gray-400">
-                    Deskripsi Singkat
+                    Short Description
                     </text>
                     <br />
                     <text className="text-base text-blues">
@@ -202,7 +202,7 @@ export default function Home() {
                 className="mt-3 bg-gray-50 border font-krona-one h-16 border-gray-300 rounded-lg block w-full ps-4 p-1.5" 
                 style={{ width: "36rem" }} >
                     <text className="text-sm text-gray-400">
-                    Pemilik
+                    Owner
                     </text>
                     <br />
                     <text className="text-base text-blues">

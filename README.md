@@ -45,35 +45,37 @@ Follwing are the steps to deploy your application locally
 
 Following are the steps to deploy your application in blockchain environment:
 
-1. To deploy run:
+1. Install wsl:
+
+`wsl --install`
+
+2. Install jq
+
+    `sudo apt update && sudo apt install -y jq`
+   
+3. Install dfx:
+
+   `DFX_VERSION=0.15.0 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"`
+
+4. Add dfx to your path
+
+   `echo 'export PATH="$PATH:$HOME/bin"' >> "$HOME/.bashrc"`
+   
+5. Install nvm
+
+```curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash```
+<br>
+`nvm use 18`
+
+
+6. To deploy run:
     
     `dfx start --clean --background`
     
     `bash scripts/deploy_frontend_canister.sh  local`
 
-2. To Stop Replica run:
+7. To Stop Replica run:
     
     `dfx stop`
 
-   1. Install wsl:
-
-    `wsl --install`
-
-3. Install jq
-
-    `sudo apt update && sudo apt install -y jq`
-   
-4. Install dfx:
-
-   `DFX_VERSION=0.15.0 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"`
-
-5. Add dfx to your path
-
-   `echo 'export PATH="$PATH:$HOME/bin"' >> "$HOME/.bashrc"`
-
-6. Install nvm
-
-   ```curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash```
-   <br>
-   `nvm use 18`
 

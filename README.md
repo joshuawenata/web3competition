@@ -47,7 +47,7 @@ Following are the steps to deploy your application in blockchain environment:
 
 1. Install wsl:
 
-`wsl --install`
+    `wsl --install`
 
 2. Install jq
 
@@ -63,9 +63,9 @@ Following are the steps to deploy your application in blockchain environment:
    
 5. Install nvm
 
-```curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash```
-<br>
-`nvm use 18`
+    ```curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash```
+    <br>
+    `nvm use 18`
 
 
 6. To deploy run:

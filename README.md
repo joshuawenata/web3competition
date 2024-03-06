@@ -9,29 +9,7 @@
     
 Follwing are the steps to deploy your application locally
 
-1. Install wsl:
-
-    `wsl --install`
-
-2. Install jq
-
-    `sudo apt update && sudo apt install -y jq`
-   
-3. Install dfx:
-
-   `DFX_VERSION=0.15.0 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"`
-
-4. Add dfx to your path
-
-   `echo 'export PATH="$PATH:$HOME/bin"' >> "$HOME/.bashrc"`
-
-5. Install nvm
-
-   ```curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash```
-   <br>
-   `nvm use 18`
-
-6. Install dependencies:
+1. Install dependencies:
 
     `npm i yarn`
    <br>
@@ -43,7 +21,7 @@ Follwing are the steps to deploy your application locally
    <br>
    `cd ..`
 
-7. Create database
+2. Create database [terminal 1]
 
     `yarn prisma migrate dev`
     <br>
@@ -51,17 +29,17 @@ Follwing are the steps to deploy your application locally
     <br>
     `yarn prisma studio`
 
-8. Run seeder for admin account
+3. Run seeder for admin account
 
     `node seeder.js`
 
-9. Run server
+4. Run server [terminal 2]
 
     `cd server`
     <br>
     `nodemon server.mjs`
     
-10. Run app locally
+5. Run app locally [terminal 3]
 
     `npm run dev`
 
@@ -76,4 +54,26 @@ Following are the steps to deploy your application in blockchain environment:
 2. To Stop Replica run:
     
     `dfx stop`
+
+   1. Install wsl:
+
+    `wsl --install`
+
+3. Install jq
+
+    `sudo apt update && sudo apt install -y jq`
+   
+4. Install dfx:
+
+   `DFX_VERSION=0.15.0 sh -ci "$(curl -fsSL https://sdk.dfinity.org/install.sh)"`
+
+5. Add dfx to your path
+
+   `echo 'export PATH="$PATH:$HOME/bin"' >> "$HOME/.bashrc"`
+
+6. Install nvm
+
+   ```curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash```
+   <br>
+   `nvm use 18`
 

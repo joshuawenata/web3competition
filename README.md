@@ -3,6 +3,7 @@
 ## Prerequisites
 
 - Nodejs >= 18.16.0
+- MySQL (on Port 3307) https://dev.mysql.com/downloads/mysql/
     
 Follwing are the steps to deploy your application locally
 
